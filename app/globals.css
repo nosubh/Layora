@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: #B07C6E;
+  color: #F6EFE9;
+}
+
+/* Elegant, visible keyboard focus without harsh outlines */
+:focus-visible {
+  outline: 1.5px solid #B07C6E;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.container-layora {
+  @apply mx-auto max-w-8xl px-5 sm:px-8 lg:px-12;
+}
+
+.eyebrow {
+  @apply text-[11px] tracking-widest2 uppercase text-rose-dark font-medium;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 bg-ink text-cream px-7 py-3 text-[13px] tracking-wide uppercase transition-colors duration-300 ease-elegant hover:bg-rose-dark;
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center gap-2 border border-ink/70 text-ink px-7 py-3 text-[13px] tracking-wide uppercase transition-colors duration-300 ease-elegant hover:border-rose-dark hover:text-rose-dark;
+}
+
+.btn-whatsapp {
+  @apply inline-flex items-center justify-center gap-2 bg-[#2E4A3F] text-cream px-6 py-3 text-[13px] tracking-wide uppercase transition-colors duration-300 ease-elegant hover:bg-[#233A31];
+}

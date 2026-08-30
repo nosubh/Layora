@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1150" width="900" height="1150">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F6EFE9"/>
+      <stop offset="100%" stop-color="#F6EFE9"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="1150" fill="url(#g1)"/>
+  <rect x="24" y="24" width="852" height="1102" fill="none" stroke="#B98A79" stroke-width="1.5" opacity="0.55"/>
+  <circle cx="432.0" cy="545.0" r="144.0" fill="none" stroke="#B98A79" stroke-width="1.2" opacity="0.5"/>
+  <text x="450.0" y="545.0" font-family="Georgia, 'Times New Roman', serif" font-size="126.00000000000001" fill="#3A2E28" text-anchor="middle" dominant-baseline="middle" opacity="0.85">I</text>
+  <text x="450.0" y="1080" font-family="Georgia, 'Times New Roman', serif" font-size="22" letter-spacing="1" fill="#3A2E28" text-anchor="middle">Isabeau Evening Gown</text>
+  <text x="450.0" y="1108" font-family="Arial, sans-serif" font-size="12" letter-spacing="3" fill="#B98A79" text-anchor="middle">DRESSES</text>
+</svg>
