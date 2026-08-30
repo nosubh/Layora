@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { categories } from "@/lib/categories";
-import { INSTAGRAM_URL, INSTAGRAM_HANDLE, SITE_NAME, SITE_TAGLINE } from "@/lib/config";
+import { SITE_NAME, SITE_TAGLINE, INSTAGRAM_URL, INSTAGRAM_HANDLE } from "@/lib/config";
 import { buildGeneralContactUrl } from "@/lib/whatsapp";
 
 export default function Footer() {
@@ -15,49 +14,34 @@ export default function Footer() {
             {SITE_TAGLINE}
           </p>
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink/70">
-            Curated dresses and accessories for the modern woman — timeless
-            pieces, made to feel effortless.
+            Handcrafted ethnic luxury dresses, festive pret, and artisanal
+            silhouettes made to feel effortless.
           </p>
         </div>
 
         <div>
-          <h3 className="eyebrow mb-5">Quick Links</h3>
+          <h3 className="eyebrow mb-5">Collections</h3>
           <ul className="flex flex-col gap-3 text-sm text-ink/75">
             <li>
               <Link href="/" className="hover:text-rose-dark">
                 Home
               </Link>
             </li>
-            {categories.map((cat) => (
-              <li key={cat.slug}>
-                <Link href={`/${cat.slug}`} className="hover:text-rose-dark">
-                  {cat.name}
-                </Link>
-              </li>
-            ))}
+            <li>
+              <Link href="/dresses" className="hover:text-rose-dark">
+                Ethnic Dresses
+              </Link>
+            </li>
+            <li>
+              <Link href="/#featured" className="hover:text-rose-dark">
+                Featured Festive
+              </Link>
+            </li>
           </ul>
         </div>
 
         <div>
-          <h3 className="eyebrow mb-5">Accessories</h3>
-          <ul className="flex flex-col gap-3 text-sm text-ink/75">
-            {categories
-              .find((c) => c.slug === "accessories")
-              ?.subcategories.map((sub) => (
-                <li key={sub.slug}>
-                  <Link
-                    href={`/accessories/${sub.slug}`}
-                    className="hover:text-rose-dark"
-                  >
-                    {sub.name}
-                  </Link>
-                </li>
-              ))}
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="eyebrow mb-5">Contact</h3>
+          <h3 className="eyebrow mb-5">Customer Care</h3>
           <ul className="flex flex-col gap-3 text-sm text-ink/75">
             <li>
               <a
@@ -66,7 +50,38 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="hover:text-rose-dark"
               >
-                WhatsApp Us
+                Size &amp; Custom Sizing
+              </a>
+            </li>
+            <li>
+              <a
+                href={buildGeneralContactUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-rose-dark"
+              >
+                Order via WhatsApp
+              </a>
+            </li>
+            <li>
+              <Link href="/cart" className="hover:text-rose-dark">
+                Shopping Cart
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="eyebrow mb-5">Connect</h3>
+          <ul className="flex flex-col gap-3 text-sm text-ink/75">
+            <li>
+              <a
+                href={buildGeneralContactUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-rose-dark font-medium text-emerald-800"
+              >
+                Chat on WhatsApp
               </a>
             </li>
             <li>

@@ -11,25 +11,29 @@ import { SITE_NAME, SITE_TAGLINE } from "@/lib/config";
  * /public/brand/  — that's it, this component will detect it and use it.
  * Until then, it falls back to the elegant text logo below.
  */
-function hasCustomLogo(): boolean {
+function getCustomLogoFilename(): string | null {
   try {
-    const logoPath = path.join(process.cwd(), "public", "brand", "logo.png");
-    return fs.existsSync(logoPath);
-  } catch {
-    return false;
-  }
+    const brandDir = path.join(process.cwd(), "public", "brand");
+    const extensions = [".png", ".jpg", ".jpeg", ".svg"];
+    for (const ext of extensions) {
+      if (fs.existsSync(path.join(brandDir, `logo${ext}`))) {
+        return `logo${ext}`;
+      }
+    }
+  } catch {}
+  return null;
 }
 
 export default function Logo({ variant = "dark" }: { variant?: "dark" | "light" }) {
-  const useImage = hasCustomLogo();
+  const logoFilename = getCustomLogoFilename();
   const textColor = variant === "light" ? "text-cream" : "text-ink";
   const subColor = variant === "light" ? "text-cream/70" : "text-ink/60";
 
   return (
     <Link href="/" className="flex flex-col items-center leading-none group">
-      {useImage ? (
+      {logoFilename ? (
         <Image
-          src="/brand/logo.png"
+          src={`/brand/${logoFilename}`}
           alt={SITE_NAME}
           width={140}
           height={48}
