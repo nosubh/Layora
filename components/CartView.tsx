@@ -28,7 +28,8 @@ export default function CartView() {
     );
   }
 
-  const whatsappUrl = buildCartOrderUrl(items);
+  const whatsappUrlPk = buildCartOrderUrl(items, "pk");
+  const whatsappUrlIntl = buildCartOrderUrl(items, "intl");
 
   return (
     <div className="container-layora py-10 lg:py-16">
@@ -38,59 +39,70 @@ export default function CartView() {
         <div className="lg:col-span-2">
           <div className="flex flex-col divide-y divide-line border-y border-line">
             {items.map((item) => (
-              <div
-                key={`${item.productId}-${item.size}-${item.color}`}
-                className="flex gap-4 py-6 sm:gap-6"
-              >
-                <Link
-                  href={`/products/${item.slug}`}
-                  className="relative h-28 w-24 shrink-0 overflow-hidden bg-sand sm:h-32 sm:w-28"
-                >
+              <div key={item.id} className="flex gap-5 py-6">
+                <div className="relative h-28 w-24 shrink-0 bg-sand">
                   <Image
                     src={item.image}
                     alt={item.name}
                     fill
-                    sizes="150px"
+                    sizes="96px"
                     className="object-cover"
                   />
-                </Link>
+                </div>
 
                 <div className="flex flex-1 flex-col justify-between">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
+                  <div>
+                    <div className="flex items-start justify-between gap-4">
                       <Link
                         href={`/products/${item.slug}`}
-                        className="text-sm hover:text-rose-dark sm:text-base"
+                        className="font-display text-base italic hover:text-rose-dark"
                       >
                         {item.name}
                       </Link>
-                      <p className="mt-1 text-xs text-ink/50">
-                        {item.color && <span>Color: {item.color} </span>}
-                        {item.size && <span>Size: {item.size}</span>}
-                      </p>
-                      <p className="mt-1 text-sm text-ink/70">
-                        {formatPrice(item.price, item.currency)}
-                      </p>
+                      <button
+                        onClick={() => removeItem(item.id)}
+                        className="text-xs text-ink/40 hover:text-rose-dark"
+                        aria-label="Remove item"
+                      >
+                        ✕
+                      </button>
                     </div>
-                    <button
-                      onClick={() => removeItem(item.productId, item.size, item.color)}
-                      aria-label={`Remove ${item.name}`}
-                      className="text-xs uppercase tracking-wide text-ink/40 hover:text-rose-dark"
-                    >
-                      Remove
-                    </button>
+
+                    <p className="mt-1 text-xs text-ink/60">
+                      {item.size && `Size: ${item.size}`}
+                      {item.size && item.color && " | "}
+                      {item.color && `Color: ${item.color}`}
+                    </p>
+
+                    <p className="mt-2 font-display text-sm text-rose-dark">
+                      {formatPrice(item.price, item.currency)}
+                    </p>
                   </div>
 
-                  <div className="mt-3 flex items-center justify-between">
-                    <QuantitySelector
-                      quantity={item.quantity}
-                      onChange={(q) =>
-                        updateQuantity(item.productId, item.size, item.color, q)
-                      }
-                    />
-                    <p className="text-sm text-ink/80">
+                  <div className="mt-4 flex items-center justify-between">
+                    <div className="flex items-center border border-line">
+                      <button
+                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                        className="flex h-7 w-7 items-center justify-center text-xs hover:bg-sand/60"
+                        aria-label="Decrease quantity"
+                      >
+                        -
+                      </button>
+                      <span className="flex h-7 w-8 items-center justify-center text-xs">
+                        {item.quantity}
+                      </span>
+                      <button
+                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                        className="flex h-7 w-7 items-center justify-center text-xs hover:bg-sand/60"
+                        aria-label="Increase quantity"
+                      >
+                        +
+                      </button>
+                    </div>
+
+                    <span className="text-xs font-semibold">
                       {formatPrice(item.price * item.quantity, item.currency)}
-                    </p>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -114,14 +126,26 @@ export default function CartView() {
           <p className="mt-2 text-xs text-ink/45">
             Delivery charges are confirmed with you directly on WhatsApp.
           </p>
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-whatsapp mt-6 w-full"
-          >
-            Checkout via WhatsApp
-          </a>
+
+          <div className="mt-6 flex flex-col gap-2.5">
+            <a
+              href={whatsappUrlPk}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-whatsapp w-full flex items-center justify-center gap-2 text-xs sm:text-sm"
+            >
+              <span>🇵🇰 Checkout via WhatsApp (Pakistan)</span>
+            </a>
+
+            <a
+              href={whatsappUrlIntl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-whatsapp w-full flex items-center justify-center gap-2 text-xs sm:text-sm bg-emerald-700 hover:bg-emerald-800"
+            >
+              <span>🌍 Checkout via WhatsApp (International)</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>

@@ -37,26 +37,46 @@ export default function MobileMenu() {
       </button>
 
       {open && (
-        <div className="fixed inset-0 top-[64px] z-40 overflow-y-auto bg-cream">
-          <nav className="container-layora flex flex-col gap-1 py-8">
-            {categories.map((cat) => (
-              <Link
-                key={cat.slug}
-                href={`/${cat.slug}`}
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-cream p-6 flex flex-col justify-between">
+          <div>
+            <div className="flex items-center justify-between border-b border-line pb-4">
+              <span className="font-display text-xl italic text-ink">Menu</span>
+              <button
                 onClick={close}
-                className="border-b border-line py-4 font-display text-2xl italic"
+                className="text-2xl font-light text-ink/70 hover:text-ink px-2 py-1"
+                aria-label="Close menu"
               >
-                {cat.name}
+                ✕
+              </button>
+            </div>
+            <nav className="flex flex-col gap-2 py-6">
+              {categories.map((cat) => (
+                <Link
+                  key={cat.slug}
+                  href={`/${cat.slug}`}
+                  onClick={close}
+                  className="border-b border-line/60 py-4 font-display text-2xl italic text-ink hover:text-rose-dark transition-colors flex items-center justify-between"
+                >
+                  <span>{cat.name}</span>
+                  {cat.comingSoon && (
+                    <span className="rounded-full bg-rose-100 px-2 py-0.5 text-xs font-sans not-italic font-semibold text-rose-800 uppercase tracking-wider">
+                      Coming Soon
+                    </span>
+                  )}
+                </Link>
+              ))}
+              <Link
+                href="/cart"
+                onClick={close}
+                className="py-4 text-sm uppercase tracking-widest2 text-rose-dark font-medium"
+              >
+                Shopping Cart
               </Link>
-            ))}
-            <Link
-              href="/cart"
-              onClick={close}
-              className="py-4 text-sm uppercase tracking-widest2 text-rose-dark"
-            >
-              View Cart
-            </Link>
-          </nav>
+            </nav>
+          </div>
+          <div className="pt-6 border-t border-line text-xs text-ink/50 text-center">
+            LAYORA • Style &amp; Accessories
+          </div>
         </div>
       )}
     </div>

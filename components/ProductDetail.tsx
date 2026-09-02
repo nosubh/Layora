@@ -9,6 +9,7 @@ import { useCart } from "@/lib/cart-context";
 import QuantitySelector from "./QuantitySelector";
 import ProductGallery from "./ProductGallery";
 import ProductGrid from "./ProductGrid";
+import SizeChart from "./SizeChart";
 
 export default function ProductDetail({
   product,
@@ -23,8 +24,13 @@ export default function ProductDetail({
   const [quantity, setQuantity] = useState(1);
   const [justAdded, setJustAdded] = useState(false);
 
-  const whatsappUrl = useMemo(
-    () => buildProductOrderUrl({ product, quantity, size, color }),
+  const whatsappUrlPk = useMemo(
+    () => buildProductOrderUrl({ product, quantity, size, color }, "pk"),
+    [product, quantity, size, color]
+  );
+
+  const whatsappUrlIntl = useMemo(
+    () => buildProductOrderUrl({ product, quantity, size, color }, "intl"),
     [product, quantity, size, color]
   );
 
@@ -70,19 +76,36 @@ export default function ProductDetail({
         <span className="text-ink/70">{product.name}</span>
       </nav>
 
-      <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
-        <ProductGallery images={product.images} name={product.name} />
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16 items-start">
+        <div>
+          <ProductGallery images={product.images} name={product.name} />
+          {product.category === "dresses" && (
+            <SizeChart selectedSize={size} onSelectSize={setSize} />
+          )}
+        </div>
 
         <div className="lg:max-w-md">
-          {(product.isNew || !product.available) && (
+          {!product.available && (
             <p className="eyebrow mb-3">
-              {!product.available ? "Sold Out" : "New Arrival"}
+              Sold Out
             </p>
           )}
           <h1 className="font-display text-3xl italic sm:text-4xl">{product.name}</h1>
-          <p className="mt-3 text-lg text-ink/80">
-            {formatPrice(product.price, product.currency)}
-          </p>
+          <div className="mt-3 flex flex-wrap items-baseline gap-3">
+            <span className="text-2xl font-bold text-rose-dark">
+              {formatPrice(product.price, product.currency)}
+            </span>
+            {product.originalPrice && product.originalPrice > product.price && (
+              <>
+                <span className="text-base text-ink/40 line-through">
+                  {formatPrice(product.originalPrice, product.currency)}
+                </span>
+                <span className="rounded bg-rose-100 px-2 py-0.5 text-[11px] font-semibold text-rose-900 uppercase tracking-wider">
+                  Sale Price
+                </span>
+              </>
+            )}
+          </div>
 
           <p className="mt-6 text-[15px] leading-relaxed text-ink/70">
             {product.description}
@@ -100,7 +123,7 @@ export default function ProductDetail({
           )}
 
           {product.colors.length > 0 && (
-            <div className="mt-7">
+            <div className="mt-6">
               <p className="mb-2.5 text-xs uppercase tracking-wide text-ink/60">
                 Color{color ? `: ${color}` : ""}
               </p>
@@ -108,6 +131,7 @@ export default function ProductDetail({
                 {product.colors.map((c) => (
                   <button
                     key={c}
+                    type="button"
                     onClick={() => setColor(c)}
                     className={`border px-4 py-2 text-xs uppercase tracking-wide transition-colors ${
                       color === c
@@ -124,15 +148,18 @@ export default function ProductDetail({
 
           {product.sizes.length > 0 && (
             <div className="mt-6">
-              <p className="mb-2.5 text-xs uppercase tracking-wide text-ink/60">
-                Size{size ? `: ${size}` : ""}
-              </p>
+              <div className="flex items-center justify-between mb-2.5">
+                <label className="text-xs uppercase tracking-wide text-ink/60">
+                  Select {product.category === "dresses" ? "Size" : "Option"}{size ? `: ${size}` : ""}
+                </label>
+              </div>
               <div className="flex flex-wrap gap-2">
                 {product.sizes.map((s) => (
                   <button
                     key={s}
+                    type="button"
                     onClick={() => setSize(s)}
-                    className={`h-10 min-w-10 border px-3 text-xs uppercase tracking-wide transition-colors ${
+                    className={`border px-4 py-2 text-xs uppercase tracking-wide transition-colors ${
                       size === s
                         ? "border-ink bg-ink text-cream"
                         : "border-ink/25 text-ink/70 hover:border-ink"
@@ -154,15 +181,7 @@ export default function ProductDetail({
             />
           </div>
 
-          <p className="mt-4 text-xs text-ink/50">
-            {product.available
-              ? product.stock <= 5
-                ? `Only ${product.stock} left in stock`
-                : "In stock, ready to ship"
-              : "Currently sold out"}
-          </p>
-
-          <div className="mt-7 flex flex-col gap-3">
+          <div className="mt-7 flex flex-col gap-2.5">
             <button
               onClick={handleAddToCart}
               disabled={!product.available}
@@ -170,16 +189,31 @@ export default function ProductDetail({
             >
               {justAdded ? "Added to Cart ✓" : "Add to Cart"}
             </button>
+
+            {/* Pakistan WhatsApp Order */}
             <a
-              href={whatsappUrl}
+              href={whatsappUrlPk}
               target="_blank"
               rel="noopener noreferrer"
               aria-disabled={!product.available}
-              className={`btn-whatsapp w-full ${
+              className={`btn-whatsapp w-full flex items-center justify-center gap-2 ${
                 !product.available ? "pointer-events-none opacity-40" : ""
               }`}
             >
-              Order on WhatsApp
+              <span>🇵🇰 Order via WhatsApp (Pakistan)</span>
+            </a>
+
+            {/* International WhatsApp Order */}
+            <a
+              href={whatsappUrlIntl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-disabled={!product.available}
+              className={`btn-whatsapp w-full flex items-center justify-center gap-2 bg-emerald-700 hover:bg-emerald-800 ${
+                !product.available ? "pointer-events-none opacity-40" : ""
+              }`}
+            >
+              <span>🌍 Order via WhatsApp (International)</span>
             </a>
           </div>
         </div>

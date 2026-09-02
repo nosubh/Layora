@@ -5,9 +5,16 @@
  * Change the values below and the whole website updates automatically.
  */
 
-// Your WhatsApp number in international format, digits only, NO "+", spaces or dashes.
-// Example: for +92 300 1234567 write "923001234567"
-export const WHATSAPP_NUMBER = "923001234567";
+// Pakistan Customer WhatsApp
+export const WHATSAPP_NUMBER_PK = "923390131877";
+export const WHATSAPP_DISPLAY_PK = "+92 339 0131877";
+
+// International Customer WhatsApp
+export const WHATSAPP_NUMBER_INTL = "971543041081";
+export const WHATSAPP_DISPLAY_INTL = "+971 54 304 1081";
+
+// Default WhatsApp number
+export const WHATSAPP_NUMBER = WHATSAPP_NUMBER_PK;
 
 // Your Instagram handle (without the @) and the full profile URL.
 export const INSTAGRAM_HANDLE = "layora.store";
@@ -15,7 +22,7 @@ export const INSTAGRAM_URL = "https://instagram.com/layora.store";
 
 // Used in page titles, meta descriptions and the footer.
 export const SITE_NAME = "LAYORA";
-export const SITE_TAGLINE = "Fashion & Accessories";
+export const SITE_TAGLINE = "Style & Accessories";
 export const SITE_DESCRIPTION =
   "LAYORA is a curated fashion and accessories house — elegant dresses, fine jewelry, mobile cases and makeup for the modern woman.";
 

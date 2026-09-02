@@ -8,6 +8,7 @@ export interface Subcategory {
   name: string;
   slug: SubcategorySlug;
   description: string;
+  comingSoon?: boolean;
 }
 
 export interface Category {
@@ -15,6 +16,7 @@ export interface Category {
   slug: CategorySlug;
   description: string;
   subcategories: Subcategory[];
+  comingSoon?: boolean;
 }
 
 export interface Product {
@@ -24,6 +26,7 @@ export interface Product {
   category: CategorySlug;
   subcategory: SubcategorySlug | null;
   price: number;
+  originalPrice?: number;
   currency: string;
   description: string;
   details: string[];

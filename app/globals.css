@@ -51,3 +51,59 @@ body {
 .btn-whatsapp {
   @apply inline-flex items-center justify-center gap-2 bg-[#2E4A3F] text-cream px-6 py-3 text-[13px] tracking-wide uppercase transition-colors duration-300 ease-elegant hover:bg-[#233A31];
 }
+
+/* Header Floral Dynamic & Funky Animations */
+@keyframes float-flower-left {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) rotate(1.8deg) scale(1.02);
+  }
+}
+
+@keyframes float-flower-right {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) rotate(-1.8deg) scale(1.02);
+  }
+}
+
+@keyframes float-petal {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-9px) translateX(5px) rotate(14deg);
+  }
+}
+
+@keyframes sparkle-pulse {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.2);
+  }
+}
+
+.animate-flower-left {
+  animation: float-flower-left 7s ease-in-out infinite;
+}
+
+.animate-flower-right {
+  animation: float-flower-right 8s ease-in-out infinite;
+}
+
+.animate-petal {
+  animation: float-petal 5.5s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle-pulse 3.5s ease-in-out infinite;
+}
+

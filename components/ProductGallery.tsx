@@ -14,7 +14,7 @@ export default function ProductGallery({
 
   return (
     <div>
-      <div className="relative aspect-[4/5] w-full overflow-hidden bg-sand">
+      <div className="relative aspect-[4/5] w-full overflow-hidden bg-sand rounded-sm">
         <Image
           src={images[active]}
           alt={name}
@@ -31,11 +31,19 @@ export default function ProductGallery({
               key={img}
               onClick={() => setActive(i)}
               aria-label={`Show image ${i + 1} of ${name}`}
-              className={`relative aspect-square overflow-hidden bg-sand transition-opacity ${
-                active === i ? "opacity-100 ring-1 ring-ink/50" : "opacity-60 hover:opacity-100"
+              className={`relative aspect-square overflow-hidden bg-sand rounded-xs transition-all duration-200 ${
+                active === i
+                  ? "opacity-100 ring-2 ring-rose-dark"
+                  : "opacity-60 hover:opacity-100"
               }`}
             >
-              <Image src={img} alt="" fill sizes="120px" className="object-cover" />
+              <Image
+                src={img}
+                alt=""
+                fill
+                sizes="(min-width: 640px) 120px, 80px"
+                className="object-cover"
+              />
             </button>
           ))}
         </div>

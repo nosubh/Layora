@@ -35,4 +35,4 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
   return <ProductDetail product={product} related={related} />;
 }
 
-export const dynamicParams = false;
+export const dynamicParams = true;
