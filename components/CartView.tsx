@@ -39,7 +39,10 @@ export default function CartView() {
         <div className="lg:col-span-2">
           <div className="flex flex-col divide-y divide-line border-y border-line">
             {items.map((item) => (
-              <div key={item.id} className="flex gap-5 py-6">
+              <div
+                key={`${item.productId}-${item.size ?? ""}-${item.color ?? ""}`}
+                className="flex gap-5 py-6"
+              >
                 <div className="relative h-28 w-24 shrink-0 bg-sand">
                   <Image
                     src={item.image}
@@ -60,7 +63,9 @@ export default function CartView() {
                         {item.name}
                       </Link>
                       <button
-                        onClick={() => removeItem(item.id)}
+                        onClick={() =>
+                          removeItem(item.productId, item.size, item.color)
+                        }
                         className="text-xs text-ink/40 hover:text-rose-dark"
                         aria-label="Remove item"
                       >
@@ -82,7 +87,14 @@ export default function CartView() {
                   <div className="mt-4 flex items-center justify-between">
                     <div className="flex items-center border border-line">
                       <button
-                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                        onClick={() =>
+                          updateQuantity(
+                            item.productId,
+                            item.size,
+                            item.color,
+                            item.quantity - 1
+                          )
+                        }
                         className="flex h-7 w-7 items-center justify-center text-xs hover:bg-sand/60"
                         aria-label="Decrease quantity"
                       >
@@ -92,7 +104,14 @@ export default function CartView() {
                         {item.quantity}
                       </span>
                       <button
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                        onClick={() =>
+                          updateQuantity(
+                            item.productId,
+                            item.size,
+                            item.color,
+                            item.quantity + 1
+                          )
+                        }
                         className="flex h-7 w-7 items-center justify-center text-xs hover:bg-sand/60"
                         aria-label="Increase quantity"
                       >
