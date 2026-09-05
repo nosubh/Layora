@@ -5,7 +5,7 @@ import Image from "next/image";
 
 interface Review {
   id: string;
-  category: "dresses" | "cases";
+  category: "dresses" | "cases" | "skincare";
   customerName: string;
   city: string;
   productName: string;
@@ -18,91 +18,108 @@ interface Review {
 }
 
 const REVIEWS: Review[] = [
-  // 3 Reviews on Dresses
+  // 1. Ethnic Festive Dress
   {
     id: "rev-dress-1",
     category: "dresses",
-    customerName: "Ayesha Khan",
+    customerName: "Hira Mansoor",
     city: "Lahore",
     productName: "Blush Vanilla Festive Suit",
     productImage: "/products/ethnic/blush-vanilla/1.jpeg",
     rating: 5,
-    date: "Verified Purchase • 3 days ago",
-    reviewTitle: "Breathtaking embroidery & perfect fitting!",
+    date: "Verified Order • 3 days ago",
+    reviewTitle: "Beautiful dress & great quality!",
     comment:
-      "The fabric quality and hand-worked neckline embroidery are absolutely breathtaking! The fitting was tailored to perfection and I received endless compliments at my family wedding. Pure luxury comfort.",
+      "The fabric is very soft and the embroidery looks amazing in person. Received my parcel in 3 days.",
     verifiedBuyer: true,
   },
+  // 2. Ethnic Festive Dress
   {
     id: "rev-dress-2",
     category: "dresses",
-    customerName: "Zainab Fatima",
+    customerName: "Sana Tariq",
     city: "Karachi",
-    productName: "Crimson Fringe Statement Dress",
-    productImage: "/products/ethnic/crimson-fringe/1.jpeg",
+    productName: "Coral Breeze Embroidered Ensemble",
+    productImage: "/products/ethnic/coral-breeze/1.jpeg",
     rating: 5,
-    date: "Verified Purchase • 1 week ago",
-    reviewTitle: "Even more gorgeous in person!",
+    date: "Verified Order • 5 days ago",
+    reviewTitle: "Perfect fitting & fast delivery",
     comment:
-      "Stunning deep crimson shade! The delicate fringe detailing and lace work look even richer in real life. Fast 3-day delivery and premium packaging. Definitely ordering again for festive celebrations!",
+      "Ordered on WhatsApp and it arrived quickly. The color and stitching are 10/10.",
     verifiedBuyer: true,
   },
-  {
-    id: "rev-dress-3",
-    category: "dresses",
-    customerName: "Maham Tariq",
-    city: "Islamabad",
-    productName: "Midnight Bloom Velvet Pret",
-    productImage: "/products/ethnic/midnight-bloom/1.jpeg",
-    rating: 5,
-    date: "Verified Purchase • 2 weeks ago",
-    reviewTitle: "Pure elegance & artisanal craftsmanship",
-    comment:
-      "The stitch precision, subtle gold zari threadwork, and rich formal dupatta made me feel so graceful. Truly a high-end designer luxury experience with exceptional attention to detail.",
-    verifiedBuyer: true,
-  },
-
-  // 2 Reviews on Mobile Covers
+  // 3. Persian Heritage Phone Case
   {
     id: "rev-case-1",
     category: "cases",
-    customerName: "Hamza Ali",
-    city: "Karachi",
-    productName: "BTS Dynamite Pop Art Case",
-    productImage: "/products/cases/bts.jpeg",
+    customerName: "Ahmad Raza",
+    city: "Lahore",
+    productName: "Isfahan Royal Medallion Case",
+    productImage: "/products/cases/persian/persian-01.jpeg",
     rating: 5,
-    date: "Verified Purchase • 5 days ago",
-    reviewTitle: "Ultra-vibrant print & solid drop protection!",
+    date: "Verified Order • 3 days ago",
+    reviewTitle: "Super classy case!",
     comment:
-      "The pop art colors are super crisp and vibrant! Accidentally dropped my phone on concrete and not a single scratch. The raised camera bezel and corner cushions give 100% peace of mind.",
+      "The Persian rug print looks so unique and premium. Protects my phone really well.",
     verifiedBuyer: true,
   },
+  // 4. Pop Art Phone Case
   {
     id: "rev-case-2",
     category: "cases",
-    customerName: "Sara Naveed",
-    city: "Rawalpindi",
-    productName: "Warrior Spirit Graphic Case",
-    productImage: "/products/cases/warrior.jpeg",
+    customerName: "Zubair Shah",
+    city: "Islamabad",
+    productName: "The Roar Royal Tiger Case",
+    productImage: "/products/cases/the-roar.jpeg",
     rating: 5,
-    date: "Verified Purchase • 1 week ago",
-    reviewTitle: "Super stylish, sleek & shockproof",
+    date: "Verified Order • 6 days ago",
+    reviewTitle: "Vibrant colors & solid grip",
     comment:
-      "Loved the funky aesthetics and tactile grip. MagSafe wireless charging works effortlessly through the cover, and the glossy finish has remained completely scratch-free.",
+      "Print quality is top notch and does not fade. Button clicks are very smooth.",
+    verifiedBuyer: true,
+  },
+  // 5. Handcrafted Jelly Soap
+  {
+    id: "rev-soap-1",
+    category: "skincare",
+    customerName: "Noor ul Ain",
+    city: "Karachi",
+    productName: "Rose Blossom Glow Jelly Soap",
+    productImage: "/products/skincare/jelly-soaps/1.jpeg",
+    rating: 5,
+    date: "Verified Order • 4 days ago",
+    reviewTitle: "Smells lovely and very hydrating",
+    comment:
+      "The bouncy jelly texture is so fun to use and leaves skin super soft.",
+    verifiedBuyer: true,
+  },
+  // 6. Handcrafted Jelly Soap
+  {
+    id: "rev-soap-2",
+    category: "skincare",
+    customerName: "Anum Javed",
+    city: "Multan",
+    productName: "Lavender Breeze Relaxing Jelly Soap",
+    productImage: "/products/skincare/jelly-soaps/3.jpeg",
+    rating: 5,
+    date: "Verified Order • 1 week ago",
+    reviewTitle: "Loved the custom monogram!",
+    comment:
+      "Ordered customized soap sets as gifts for my cousins. Everyone loved the aroma!",
     verifiedBuyer: true,
   },
 ];
 
 export default function CustomerReviews() {
-  const [filter, setFilter] = useState<"all" | "dresses" | "cases">("all");
+  const [filter, setFilter] = useState<"all" | "dresses" | "cases" | "skincare">("all");
 
   const visibleReviews =
     filter === "all" ? REVIEWS : REVIEWS.filter((r) => r.category === filter);
 
   return (
-    <section className="border-t border-line bg-sand/35 py-16 sm:py-20 lg:py-24">
+    <section className="border-t border-line bg-sand/30 py-16 sm:py-20 lg:py-24">
       <div className="container-layora">
-        {/* Header */}
+        {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 border-b border-line/60 pb-8">
           <div>
             <div className="inline-flex items-center gap-2 mb-2">
@@ -112,15 +129,15 @@ export default function CustomerReviews() {
               </span>
             </div>
             <h2 className="font-display text-3xl italic sm:text-4xl lg:text-5xl text-ink">
-              Loved by Our Customers
+              Loved by Our Community
             </h2>
             <p className="mt-2 text-sm text-ink/75 max-w-lg">
-              Read authentic feedback from verified clients across Pakistan who trust LAYORA for handcrafted ethnic wear and designer accessories.
+              Read authentic feedback from verified clients who trust LAYORA for artisanal ethnic wear, designer phone cases, and handcrafted skincare.
             </p>
           </div>
 
-          {/* Filter Tabs */}
-          <div className="flex items-center gap-2 self-start md:self-auto bg-cream p-1.5 rounded-full border border-line shadow-2xs">
+          {/* Filter Pills */}
+          <div className="flex flex-wrap items-center gap-2 self-start md:self-auto bg-cream p-1.5 rounded-full border border-line shadow-2xs">
             <button
               onClick={() => setFilter("all")}
               className={`rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider transition-all duration-200 ${
@@ -139,7 +156,7 @@ export default function CustomerReviews() {
                   : "text-ink/70 hover:text-ink"
               }`}
             >
-              Dresses (3)
+              Dresses (2)
             </button>
             <button
               onClick={() => setFilter("cases")}
@@ -149,7 +166,17 @@ export default function CustomerReviews() {
                   : "text-ink/70 hover:text-ink"
               }`}
             >
-              Mobile Covers (2)
+              Cases (2)
+            </button>
+            <button
+              onClick={() => setFilter("skincare")}
+              className={`rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider transition-all duration-200 ${
+                filter === "skincare"
+                  ? "bg-ink text-cream shadow-xs"
+                  : "text-ink/70 hover:text-ink"
+              }`}
+            >
+              Soaps (2)
             </button>
           </div>
         </div>
@@ -169,7 +196,7 @@ export default function CustomerReviews() {
                   </div>
                   {review.verifiedBuyer && (
                     <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-800 border border-emerald-200">
-                      ✓ Verified Buyer
+                      ✓ Verified Order
                     </span>
                   )}
                 </div>
@@ -217,22 +244,23 @@ export default function CustomerReviews() {
         <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-line/60 pt-8 text-center">
           <div className="p-3">
             <p className="font-display text-2xl sm:text-3xl italic font-bold text-ink">100%</p>
-            <p className="text-xs text-ink/65 uppercase tracking-wider mt-1">Authentic Quality</p>
+            <p className="text-xs text-ink/65 uppercase tracking-wider mt-1">Authentic Craftsmanship</p>
           </div>
           <div className="p-3">
             <p className="font-display text-2xl sm:text-3xl italic font-bold text-ink">5.0 ★</p>
-            <p className="text-xs text-ink/65 uppercase tracking-wider mt-1">Average Rating</p>
+            <p className="text-xs text-ink/65 uppercase tracking-wider mt-1">Customer Rating</p>
           </div>
           <div className="p-3">
             <p className="font-display text-2xl sm:text-3xl italic font-bold text-ink">3-5 Days</p>
-            <p className="text-xs text-ink/65 uppercase tracking-wider mt-1">Fast Delivery</p>
+            <p className="text-xs text-ink/65 uppercase tracking-wider mt-1">Delivery Nationwide</p>
           </div>
           <div className="p-3">
             <p className="font-display text-2xl sm:text-3xl italic font-bold text-ink">24/7</p>
-            <p className="text-xs text-ink/65 uppercase tracking-wider mt-1">WhatsApp Support</p>
+            <p className="text-xs text-ink/65 uppercase tracking-wider mt-1">WhatsApp Concierge</p>
           </div>
         </div>
       </div>
     </section>
   );
 }
+

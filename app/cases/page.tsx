@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import CategoryHeader from "@/components/CategoryHeader";
-import ProductGrid from "@/components/ProductGrid";
+import CasesCatalogView from "@/components/CasesCatalogView";
 import { getProductsByCategory } from "@/lib/products";
-import { getCategory } from "@/lib/categories";
 
 export const metadata: Metadata = {
-  title: "Mobile Cases",
+  title: "Mobile Cases & Designer Covers",
   description:
-    "Explore LAYORA's signature Pop Art & Funky Phone Cases. Premium shockproof protection with vibrant, durable artwork for iPhone and Samsung Galaxy.",
+    "Explore LAYORA's signature Pop Art, Funky & Persian Heritage Phone Cases. Premium shockproof protection with vibrant, durable artwork for iPhone and Samsung Galaxy.",
 };
 
 export default function CasesPage() {
@@ -18,10 +17,10 @@ export default function CasesPage() {
       <CategoryHeader
         eyebrow="Designer Phone Cases"
         title="Mobile Cases &amp; Accessories"
-        description="Expressive, protective, and designer phone cases engineered with shockproof protection and vibrant high-definition pop art prints."
+        description="Expressive, protective, and designer phone cases engineered with shockproof protection, Persian carpet heritage motifs, and vibrant pop art prints."
       />
-      <div className="container-layora py-14 lg:py-20">
-        <ProductGrid products={products} />
+      <div className="container-layora py-10 sm:py-14 lg:py-20">
+        <CasesCatalogView products={products} />
       </div>
     </div>
   );

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { categories } from "@/lib/categories";
+import { buildGeneralContactUrl } from "@/lib/whatsapp";
 
 export default function MobileMenu() {
   const [open, setOpen] = useState(false);
@@ -74,6 +75,7 @@ export default function MobileMenu() {
               </Link>
             </nav>
           </div>
+
           <div className="pt-6 border-t border-line text-xs text-ink/50 text-center">
             LAYORA • Style &amp; Accessories
           </div>
