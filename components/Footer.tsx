@@ -81,7 +81,7 @@ export default function Footer() {
             </li>
             <li>
               <Link href="/accessories" className="hover:text-rose-dark">
-                Accessories &amp; Cases
+                Accessories &amp; Phone Cases
               </Link>
             </li>
             <li>

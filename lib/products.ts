@@ -1904,6 +1904,324 @@ export const products: Product[] = [
     available: true,
     stock: 20,
   },
+  // ─── BRACELETS ─────────────────────────────────────────────────────────────
+  {
+    id: "bracelet-001",
+    name: "Tulip Bracelet - Rose Pink",
+    slug: "pastel-beaded-charm-bracelet",
+    category: "accessories",
+    subcategory: "bracelets",
+    price: 399,
+    originalPrice: 500,
+    currency: "PKR",
+    description:
+      "A dainty rose pink tulip beaded bracelet strung with handpicked floral charm accents — effortlessly stackable and perfect for everyday wear.",
+    details: [
+      "Handpicked pastel rose tulip beads",
+      "Adjustable clasp for a secure fit",
+      "Lightweight and skin-friendly",
+      "Stackable design",
+    ],
+    sizes: ["One Size"],
+    colors: ["Rose Pink"],
+    images: [
+      "/products/Bracelets/WhatsApp Image 2026-09-05 at 22.31.28 (1).jpeg",
+    ],
+    featured: true,
+    available: true,
+    stock: 15,
+    isNew: true,
+  },
+  {
+    id: "bracelet-002",
+    name: "Tulip Bracelet - Golden Sun",
+    slug: "golden-layered-chain-bracelet",
+    category: "accessories",
+    subcategory: "bracelets",
+    price: 399,
+    originalPrice: 500,
+    currency: "PKR",
+    description:
+      "A luxurious golden sun tulip chain bracelet that adds effortless glam to any outfit, day or night.",
+    details: [
+      "Gold-tone plated tulip accent finish",
+      "Multi-layer chain design",
+      "Lobster-claw clasp",
+      "Tarnish-resistant coating",
+    ],
+    sizes: ["One Size"],
+    colors: ["Golden Sun"],
+    images: [
+      "/products/Bracelets/WhatsApp Image 2026-09-05 at 22.31.28 (12).jpeg",
+    ],
+    featured: true,
+    available: true,
+    stock: 12,
+    isNew: true,
+  },
+  {
+    id: "bracelet-003",
+    name: "Tulip Bracelet - Boho Multicolor",
+    slug: "boho-woven-thread-bracelet",
+    category: "accessories",
+    subcategory: "bracelets",
+    price: 399,
+    originalPrice: 500,
+    currency: "PKR",
+    description:
+      "Hand-woven bohemian tulip friendship bracelet with vibrant thread patterns — a splash of color and spirit on your wrist.",
+    details: [
+      "Hand-woven artisan tulip threads",
+      "Adjustable sliding knot",
+      "Vibrant colorfast dyes",
+      "Lightweight & comfortable",
+    ],
+    sizes: ["One Size"],
+    colors: ["Boho Multicolor"],
+    images: [
+      "/products/Bracelets/WhatsApp Image 2026-09-05 at 22.31.28 (13).jpeg",
+    ],
+    featured: false,
+    available: true,
+    stock: 20,
+  },
+  {
+    id: "bracelet-004",
+    name: "Tulip Bracelet - Crystal Silver",
+    slug: "crystal-studded-cuff-bracelet",
+    category: "accessories",
+    subcategory: "bracelets",
+    price: 399,
+    originalPrice: 500,
+    currency: "PKR",
+    description:
+      "A bold crystal silver tulip cuff bracelet encrusted with sparkling stones for a statement look at parties and formal occasions.",
+    details: [
+      "High-grade crystal tulip stones",
+      "Open adjustable cuff design",
+      "Silver-tone metal base",
+      "Anti-allergenic finish",
+    ],
+    sizes: ["One Size"],
+    colors: ["Crystal Silver"],
+    images: [
+      "/products/Bracelets/WhatsApp Image 2026-09-05 at 22.31.28 (3).jpeg",
+    ],
+    featured: true,
+    available: true,
+    stock: 10,
+    isNew: true,
+  },
+  {
+    id: "bracelet-005",
+    name: "Tulip Bracelet - Pearl White",
+    slug: "delicate-pearl-strand-bracelet",
+    category: "accessories",
+    subcategory: "bracelets",
+    price: 399,
+    originalPrice: 500,
+    currency: "PKR",
+    description:
+      "A timeless single-strand pearl white tulip bracelet with a silver toggle clasp — elegant simplicity at its finest.",
+    details: [
+      "Lustrous pearl white tulip beads",
+      "Silver-tone toggle clasp",
+      "Classic bridal-inspired design",
+      "Delicate & lightweight",
+    ],
+    sizes: ["One Size"],
+    colors: ["Pearl White"],
+    images: [
+      "/products/Bracelets/WhatsApp Image 2026-09-05 at 22.31.28 (5).jpeg",
+    ],
+    featured: false,
+    available: true,
+    stock: 18,
+  },
+  {
+    id: "bracelet-006",
+    name: "Tulip Bracelet - Rose Gold",
+    slug: "rose-gold-minimal-bangle",
+    category: "accessories",
+    subcategory: "bracelets",
+    price: 399,
+    originalPrice: 500,
+    currency: "PKR",
+    description:
+      "A slim, minimalist rose gold tulip bangle that pairs beautifully with watches or stacked with other bangles for a chic look.",
+    details: [
+      "Rose gold plated tulip finish",
+      "Slim minimalist silhouette",
+      "Hypoallergenic metal",
+      "Perfect for stacking",
+    ],
+    sizes: ["One Size"],
+    colors: ["Rose Gold"],
+    images: [
+      "/products/Bracelets/WhatsApp Image 2026-09-05 at 22.31.28 (6).jpeg",
+    ],
+    featured: false,
+    available: true,
+    stock: 22,
+  },
+  {
+    id: "bracelet-007",
+    name: "Tulip Bracelet - Ocean Blue",
+    slug: "evil-eye-beaded-bracelet",
+    category: "accessories",
+    subcategory: "bracelets",
+    price: 399,
+    originalPrice: 500,
+    currency: "PKR",
+    description:
+      "A spiritually inspired ocean blue tulip beaded bracelet combining protection symbolism with modern aesthetic charm.",
+    details: [
+      "Ocean blue enamel tulip charm",
+      "Elastic stretch cord",
+      "Mixed bead textures",
+      "Meaningful protective design",
+    ],
+    sizes: ["One Size"],
+    colors: ["Ocean Blue"],
+    images: [
+      "/products/Bracelets/WhatsApp Image 2026-09-05 at 22.31.28 (8).jpeg",
+    ],
+    featured: true,
+    available: true,
+    stock: 25,
+    isNew: true,
+  },
+  {
+    id: "bracelet-008",
+    name: "Tulip Bracelet - Turquoise Teal",
+    slug: "turquoise-stone-wrap-bracelet",
+    category: "accessories",
+    subcategory: "bracelets",
+    price: 399,
+    originalPrice: 500,
+    currency: "PKR",
+    description:
+      "A stunning turquoise teal gemstone tulip wrap bracelet with leather accents — earthy, bohemian, and endlessly wearable.",
+    details: [
+      "Natural turquoise stone tulip beads",
+      "Genuine leather wrap",
+      "Magnetic closure",
+      "Handcrafted finish",
+    ],
+    sizes: ["One Size"],
+    colors: ["Turquoise Teal"],
+    images: [
+      "/products/Bracelets/WhatsApp Image 2026-09-05 at 22.31.28 (9).jpeg",
+    ],
+    featured: false,
+    available: true,
+    stock: 14,
+  },
+  {
+    id: "bracelet-009",
+    name: "Tulip Bracelet - Charm Trio",
+    slug: "luxe-charm-stacking-set",
+    category: "accessories",
+    subcategory: "bracelets",
+    price: 399,
+    originalPrice: 500,
+    currency: "PKR",
+    description:
+      "A curated set of 3 stackable tulip charm bracelets — mix metals, textures, and charms for a personalized arm party.",
+    details: [
+      "Set of 3 tulip charm bracelets",
+      "Mixed metal tones",
+      "Assorted tulip charm pendants",
+      "Lobster clasp closures",
+    ],
+    sizes: ["One Size"],
+    colors: ["Gold & Silver Trio"],
+    images: [
+      "/products/Bracelets/WhatsApp Image 2026-09-05 at 22.31.29 (1).jpeg",
+    ],
+    featured: true,
+    available: true,
+    stock: 8,
+    isNew: true,
+  },
+  {
+    id: "bracelet-010",
+    name: "Tulip Bracelet - Floral Enamel",
+    slug: "floral-enamel-bangle",
+    category: "accessories",
+    subcategory: "bracelets",
+    price: 399,
+    originalPrice: 500,
+    currency: "PKR",
+    description:
+      "A vivid floral enamel tulip bangle with hand-painted tulip petal motifs — a pop of color that elevates every look.",
+    details: [
+      "Hand-painted tulip enamel artwork",
+      "Solid brass base",
+      "Chip-resistant finish",
+      "Statement-worthy design",
+    ],
+    sizes: ["One Size"],
+    colors: ["Floral Enamel"],
+    images: [
+      "/products/Bracelets/WhatsApp Image 2026-09-05 at 22.31.29 (5).jpeg",
+    ],
+    featured: false,
+    available: true,
+    stock: 16,
+  },
+  {
+    id: "bracelet-011",
+    name: "Tulip Bracelet - Midnight Black",
+    slug: "midnight-onyx-beaded-bracelet",
+    category: "accessories",
+    subcategory: "bracelets",
+    price: 399,
+    originalPrice: 500,
+    currency: "PKR",
+    description:
+      "Sleek midnight black onyx tulip beads strung on an elastic cord — minimal, powerful, and effortlessly stylish for everyday wear.",
+    details: [
+      "Genuine onyx stone tulip beads",
+      "Elastic stretch cord",
+      "Polished matte finish",
+      "Unisex minimal design",
+    ],
+    sizes: ["One Size"],
+    colors: ["Midnight Black"],
+    images: [
+      "/products/Bracelets/WhatsApp Image 2026-09-05 at 22.31.29 (6).jpeg",
+    ],
+    featured: false,
+    available: true,
+    stock: 20,
+  },
+  {
+    id: "bracelet-012",
+    name: "Tulip Bracelet - Antique Gold",
+    slug: "vintage-brass-coin-bracelet",
+    category: "accessories",
+    subcategory: "bracelets",
+    price: 399,
+    originalPrice: 500,
+    currency: "PKR",
+    description:
+      "An artisan-crafted antique gold tulip bracelet featuring hammered brass charms with antique detailing.",
+    details: [
+      "Hammered brass tulip charms",
+      "Antique gold-tone finish",
+      "Adjustable chain length",
+      "Vintage artisan craftsmanship",
+    ],
+    sizes: ["One Size"],
+    colors: ["Antique Gold"],
+    images: [
+      "/products/Bracelets/WhatsApp Image 2026-09-05 at 22.31.29 (7).jpeg",
+    ],
+    featured: false,
+    available: true,
+    stock: 12,
+  },
 ];
 
 export function getProductBySlug(slug: string): Product | undefined {
@@ -1913,7 +2231,9 @@ export function getProductBySlug(slug: string): Product | undefined {
 export function getProductsByCategory(category: string): Product[] {
   if (category === "accessories" || category === "cases") {
     return products.filter(
-      (p) => p.category === "accessories" || p.category === "cases"
+      (p) =>
+        p.category === "accessories" ||
+        p.category === "cases"
     );
   }
   return products.filter((p) => p.category === category);
@@ -1947,4 +2267,4 @@ export function getRelatedProducts(product: Product, limit = 4): Product[] {
     .filter((p) => p.id !== product.id && p.category === product.category)
     .slice(0, limit);
 }
-
+  

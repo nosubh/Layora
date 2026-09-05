@@ -45,7 +45,7 @@ export default function Header() {
       <div className="border-t border-line/70 bg-cream/95 backdrop-blur-md shadow-2xs">
         <div className="container-layora">
           {/* Desktop & Tablet Categories Navigation */}
-          <nav className="flex items-center justify-center gap-5 sm:gap-8 md:gap-12 py-3 sm:py-3.5 overflow-x-auto no-scrollbar">
+          <nav className="flex items-center justify-center gap-6 sm:gap-10 md:gap-14 py-3 sm:py-3.5 overflow-x-auto no-scrollbar">
             <Link
               href="/"
               className="shrink-0 text-xs sm:text-[13px] uppercase tracking-widest text-ink/90 font-bold transition-all duration-200 hover:text-rose-dark hover:scale-105"

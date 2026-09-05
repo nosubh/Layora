@@ -20,6 +20,11 @@ export const categories: Category[] = [
         description: "Bold, quirky, and protective statement phone cases.",
       },
       {
+        name: "Bracelets",
+        slug: "bracelets",
+        description: "Handcrafted charm and beaded bracelets on special PKR 399 sale.",
+      },
+      {
         name: "Jewelry",
         slug: "jewelry",
         description: "Handcrafted fine jewelry and contemporary artisanal pieces.",
