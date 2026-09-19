@@ -1,34 +1,124 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import CategoryHeader from "@/components/CategoryHeader";
 import ProductGrid from "@/components/ProductGrid";
-import { getProductsByCategory, getProductsBySubcategory } from "@/lib/products";
+import { getProductsBySubcategory } from "@/lib/products";
 import { getCategory } from "@/lib/categories";
 import { buildGeneralContactUrl } from "@/lib/whatsapp";
 
+type SkincareTab =
+  | "medicube-sheet-masks"
+  | "medicube-tube-masks"
+  | "sadoer-masks"
+  | "lip-care"
+  | "serums"
+  | "jelly-soaps";
+
 export default function SkincarePage() {
   const category = getCategory("skincare");
+  const medicubeSheetMaskProducts = getProductsBySubcategory("skincare", "medicube-sheet-masks");
+  const medicubeTubeMaskProducts = getProductsBySubcategory("skincare", "medicube-tube-masks");
+  const sadoerMaskProducts = getProductsBySubcategory("skincare", "sadoer-masks");
+  const lipCareProducts = getProductsBySubcategory("skincare", "lip-care");
+  const serumProducts = getProductsBySubcategory("skincare", "serums");
   const jellySoapProducts = getProductsBySubcategory("skincare", "jelly-soaps");
-  const allSkincareProducts = getProductsByCategory("skincare");
 
-  const [activeTab, setActiveTab] = useState<"jelly-soaps" | "serums-oils">("jelly-soaps");
+  const [activeTab, setActiveTab] = useState<SkincareTab>("medicube-sheet-masks");
+
+  const getFilteredProducts = () => {
+    switch (activeTab) {
+      case "medicube-sheet-masks":
+        return medicubeSheetMaskProducts;
+      case "medicube-tube-masks":
+        return medicubeTubeMaskProducts;
+      case "sadoer-masks":
+        return sadoerMaskProducts;
+      case "lip-care":
+        return lipCareProducts;
+      case "serums":
+        return serumProducts;
+      case "jelly-soaps":
+        return jellySoapProducts;
+      default:
+        return medicubeSheetMaskProducts;
+    }
+  };
+
+  const displayedProducts = getFilteredProducts();
 
   return (
     <div>
       <CategoryHeader
-        eyebrow="Clean Beauty &amp; Body Rituals"
-        title="Skincare &amp; Customized Jelly Soaps"
-        description="Handcrafted organic jelly soaps with customizable designs, soothing botanical extracts, and upcoming luxury facial serums."
+        eyebrow="Clean Beauty &amp; Korean Skincare Rituals"
+        title="Skincare &amp; Beauty Essentials"
+        description={
+          category?.description ||
+          "Medicube collagen hydrogel & tube masks, Sadour sheet masks, Laneige lip sleeping masks, SHEGLAM lip oils, snail mucin serums, and handcrafted jelly soaps."
+        }
       />
 
       <div className="container-layora py-10 sm:py-14">
-        {/* Subcategories Switcher Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+        {/* Subcategories Filter Tabs */}
+        <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-12">
+          <button
+            onClick={() => setActiveTab("medicube-sheet-masks")}
+            className={`rounded-full px-5 py-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all duration-200 ${
+              activeTab === "medicube-sheet-masks"
+                ? "bg-ink text-cream shadow-sm scale-105"
+                : "bg-sand/70 text-ink/75 hover:text-ink hover:bg-sand"
+            }`}
+          >
+            Medicube Sheet Masks ({medicubeSheetMaskProducts.length})
+          </button>
+
+          <button
+            onClick={() => setActiveTab("medicube-tube-masks")}
+            className={`rounded-full px-5 py-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all duration-200 ${
+              activeTab === "medicube-tube-masks"
+                ? "bg-ink text-cream shadow-sm scale-105"
+                : "bg-sand/70 text-ink/75 hover:text-ink hover:bg-sand"
+            }`}
+          >
+            Medicube Tube Masks ({medicubeTubeMaskProducts.length})
+          </button>
+
+          <button
+            onClick={() => setActiveTab("sadoer-masks")}
+            className={`rounded-full px-5 py-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all duration-200 ${
+              activeTab === "sadoer-masks"
+                ? "bg-ink text-cream shadow-sm scale-105"
+                : "bg-sand/70 text-ink/75 hover:text-ink hover:bg-sand"
+            }`}
+          >
+            Sadour Sheet Masks ({sadoerMaskProducts.length})
+          </button>
+
+          <button
+            onClick={() => setActiveTab("lip-care")}
+            className={`rounded-full px-5 py-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all duration-200 ${
+              activeTab === "lip-care"
+                ? "bg-ink text-cream shadow-sm scale-105"
+                : "bg-sand/70 text-ink/75 hover:text-ink hover:bg-sand"
+            }`}
+          >
+            Lip Masks &amp; Lip Oils ({lipCareProducts.length})
+          </button>
+
+          <button
+            onClick={() => setActiveTab("serums")}
+            className={`rounded-full px-5 py-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all duration-200 ${
+              activeTab === "serums"
+                ? "bg-ink text-cream shadow-sm scale-105"
+                : "bg-sand/70 text-ink/75 hover:text-ink hover:bg-sand"
+            }`}
+          >
+            Serums &amp; Creams ({serumProducts.length})
+          </button>
+
           <button
             onClick={() => setActiveTab("jelly-soaps")}
-            className={`rounded-full px-6 py-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all duration-200 ${
+            className={`rounded-full px-5 py-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all duration-200 ${
               activeTab === "jelly-soaps"
                 ? "bg-ink text-cream shadow-sm scale-105"
                 : "bg-sand/70 text-ink/75 hover:text-ink hover:bg-sand"
@@ -36,100 +126,65 @@ export default function SkincarePage() {
           >
             Customized Jelly Soaps ({jellySoapProducts.length})
           </button>
-
-          <button
-            onClick={() => setActiveTab("serums-oils")}
-            className={`group rounded-full px-6 py-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all duration-200 flex items-center gap-2 ${
-              activeTab === "serums-oils"
-                ? "bg-ink text-cream shadow-sm scale-105"
-                : "bg-sand/70 text-ink/75 hover:text-ink hover:bg-sand"
-            }`}
-          >
-            <span>Serums &amp; Oils</span>
-            <span className="rounded-full bg-rose-200 px-2 py-0.5 text-[9px] font-bold text-rose-900 uppercase">
-              Coming Soon
-            </span>
-          </button>
         </div>
 
-        {/* Tab Content: Customized Jelly Soaps */}
-        {activeTab === "jelly-soaps" && (
+        {/* Section Header */}
+        <div className="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 border-b border-line/60 pb-5">
           <div>
-            <div className="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 border-b border-line/60 pb-5">
-              <div>
-                <p className="eyebrow text-rose-dark mb-1">Handmade Small-Batch</p>
-                <h2 className="font-display text-2xl sm:text-3xl italic text-ink">
-                  Customized Jelly Soaps Collection
-                </h2>
-                <p className="text-sm text-ink/70 mt-1 max-w-xl">
-                  Squishy, bouncy, and ultra-hydrating jelly soaps infused with aloe vera, organic botanicals, and customizable initial monogram carvings.
-                </p>
-              </div>
-              <a
-                href={buildGeneralContactUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-whatsapp text-xs py-2.5 px-4 self-start sm:self-auto shrink-0"
-              >
-                Custom Order on WhatsApp 💬
-              </a>
-            </div>
-
-            {/* Product Grid of all 15 Jelly Soaps */}
-            <ProductGrid products={jellySoapProducts} />
-          </div>
-        )}
-
-        {/* Tab Content: Serums & Oils (Coming Soon) */}
-        {activeTab === "serums-oils" && (
-          <div className="mx-auto max-w-2xl rounded-sm border border-line bg-sand/40 p-8 sm:p-14 text-center shadow-sm my-6">
-            <span className="inline-block rounded-full bg-rose-dark px-4 py-1 text-xs font-semibold uppercase tracking-widest text-cream">
-              Coming Soon
-            </span>
-            <h2 className="mt-5 font-display text-3xl italic text-ink sm:text-4xl">
-              LAYORA Radiance Serums &amp; Elixir Oils
+            <p className="eyebrow text-rose-dark mb-1">
+              {activeTab === "medicube-sheet-masks"
+                ? "Original Korean Hydrogel Collagen"
+                : activeTab === "medicube-tube-masks"
+                ? "Korean Peel-Off & Clay Treatment Tubes"
+                : activeTab === "sadoer-masks"
+                ? "Hydrating Botanical Essence"
+                : activeTab === "lip-care"
+                ? "Laneige Sleeping Mask & SHEGLAM Lip Oil"
+                : activeTab === "serums"
+                ? "Korean Snail Mucin Restorative Duo"
+                : "Handcrafted Small-Batch"}
+            </p>
+            <h2 className="font-display text-2xl sm:text-3xl italic text-ink">
+              {activeTab === "medicube-sheet-masks"
+                ? "Medicube Deep Collagen Sheet Mask"
+                : activeTab === "medicube-tube-masks"
+                ? "Medicube Treatment Tube Masks Collection"
+                : activeTab === "sadoer-masks"
+                ? "Sadour Botanical Sheet Masks"
+                : activeTab === "lip-care"
+                ? "Lip Masks & SHEGLAM Lip Oils"
+                : activeTab === "serums"
+                ? "Serums & Moisture Barrier Creams"
+                : "Customized Botanical Jelly Soaps"}
             </h2>
-            <p className="mt-4 text-sm sm:text-base leading-relaxed text-ink/75">
-              We are carefully formulating our signature line of clean, deeply nourishing facial serums and golden botanical oils designed for an effortless glass-skin dewy glow.
+            <p className="text-sm text-ink/70 mt-1 max-w-2xl">
+              {activeTab === "medicube-sheet-masks"
+                ? "Original Medicube deep collagen hydrogel sheet mask (PKR 1,000 in offer / Original: PKR 1,200). Turns transparent as collagen absorbs into skin."
+                : activeTab === "medicube-tube-masks"
+                ? "Korean Medicube Collagen Jelly Peel-Off, Vitamin C Glow Peel, and Super Cica Calming Clay tube masks (PKR 2,900 each in offer / Original: PKR 3,500)."
+                : activeTab === "sadoer-masks"
+                ? "Sadour radiance hydrating botanical sheet masks (PKR 100 each in offer / Original: PKR 150)."
+                : activeTab === "lip-care"
+                ? "Laneige Lip Sleeping Mask (PKR 2,000 in offer / Original: PKR 2,500) & SHEGLAM Nourishing Lip Oil Set (PKR 1,480 / Original: PKR 1,600)."
+                : activeTab === "serums"
+                ? "Advanced Snail Mucin Serum & Moisture Barrier Cream Duo (PKR 3,000 in offer / Original: PKR 4,500) and Sadour Facial Glow Serum (PKR 517 / Original: PKR 600)."
+                : activeTab === "jelly-soaps"
+                ? "Squishy, bouncy, and ultra-hydrating jelly soaps (PKR 400 each / PKR 1,500 set of 6)."
+                : "Authentic Medicube sheet & tube masks, Sadour sheet masks, Laneige lip sleeping masks, SHEGLAM lip oils, snail mucin serums, and jelly soaps."}
             </p>
-
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 border-y border-line/60 py-6 text-left">
-              <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-rose-dark">01. Glow</p>
-                <p className="text-xs text-ink/70 mt-1">Hyaluronic &amp; Vitamin C radiance boost</p>
-              </div>
-              <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-rose-dark">02. Elixirs</p>
-                <p className="text-xs text-ink/70 mt-1">Cold-pressed rosehip &amp; jojoba oils</p>
-              </div>
-              <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-rose-dark">03. Clean</p>
-                <p className="text-xs text-ink/70 mt-1">100% Cruelty-free &amp; paraben free</p>
-              </div>
-            </div>
-
-            <p className="mt-6 text-xs text-ink/60">
-              Be the first to receive VIP launch notifications &amp; early bird discounts.
-            </p>
-
-            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <a
-                href={buildGeneralContactUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-whatsapp w-full sm:w-auto"
-              >
-                Notify Me on WhatsApp
-              </a>
-              <button
-                onClick={() => setActiveTab("jelly-soaps")}
-                className="btn-outline w-full sm:w-auto"
-              >
-                Explore Jelly Soaps
-              </button>
-            </div>
           </div>
-        )}
+          <a
+            href={buildGeneralContactUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-whatsapp text-xs py-2.5 px-4 self-start sm:self-auto shrink-0"
+          >
+            Order on WhatsApp 💬
+          </a>
+        </div>
+
+        {/* Product Grid */}
+        <ProductGrid products={displayedProducts} />
       </div>
     </div>
   );

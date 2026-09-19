@@ -35,20 +35,43 @@ export const categories: Category[] = [
     name: "Skincare",
     slug: "skincare",
     description:
-      "Clean botanical beauty rituals, artisanal customized jelly soaps, and restorative skincare formulations.",
+      "Clean botanical beauty rituals, Medicube collagen & tube masks, Sadour sheet masks, Laneige lip care, SHEGLAM lip oils, snail mucin serums, and artisanal jelly soaps.",
     subcategories: [
+      {
+        name: "Medicube Sheet Masks",
+        slug: "medicube-sheet-masks",
+        description:
+          "Original Medicube deep collagen hydrogel treatment sheet mask.",
+      },
+      {
+        name: "Medicube Tube Masks",
+        slug: "medicube-tube-masks",
+        description:
+          "Medicube Korean peel-off, collagen jelly, and clay treatment tube masks.",
+      },
+      {
+        name: "Sadour Sheet Masks",
+        slug: "sadoer-masks",
+        description:
+          "Sadour radiance hydrating botanical sheet masks.",
+      },
+      {
+        name: "Lip Care & Oils",
+        slug: "lip-care",
+        description:
+          "Laneige Lip Sleeping Mask and SHEGLAM nourishing botanical lip oils.",
+      },
+      {
+        name: "Serums & Creams",
+        slug: "serums",
+        description:
+          "Korean snail mucin repair serums and essence creams.",
+      },
       {
         name: "Customized Jelly Soaps",
         slug: "jelly-soaps",
         description:
-          "Handcrafted, hydrating, and customized jelly soaps made with gentle botanical ingredients and personalized scents.",
-      },
-      {
-        name: "Serums & Oils",
-        slug: "serums-oils",
-        description:
-          "Nourishing botanical elixirs, radiance glow serums, and pure essential facial oils launching soon.",
-        comingSoon: true,
+          "Handcrafted, hydrating, and customized jelly soaps made with gentle botanical ingredients.",
       },
     ],
   },
