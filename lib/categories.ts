@@ -6,7 +6,13 @@ export const categories: Category[] = [
     slug: "dresses",
     description:
       "Handcrafted ethnic luxury dresses, festive ensembles, and contemporary pret designed for timeless grace.",
-    subcategories: [],
+    subcategories: [
+      {
+        name: "New Arrivals",
+        slug: "new-arrivals",
+        description: "Latest collection of 2-piece and 3-piece festive dresses.",
+      },
+    ],
   },
   {
     name: "Accessories",
