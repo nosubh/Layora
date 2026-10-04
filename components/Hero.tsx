@@ -99,14 +99,14 @@ export default function Hero() {
           <div className="flex items-center gap-2">
             <span className="inline-block h-2.5 w-2.5 rounded-full bg-rose-dark animate-pulse" />
             <span className="text-xs font-bold uppercase tracking-wider text-rose-dark">
-              LAYORA Winter Collection • New Arrivals '26
+              LAYORA Collection • New Arrivals
             </span>
           </div>
           <div className="text-xs font-semibold text-ink/60 tracking-wider">
             <span className="text-rose-dark font-bold text-sm">
               {String(safeIndex + 1).padStart(2, "0")}
             </span>{" "}
-            / {String(heroProducts.length).padStart(2, "0")} Winter Suits
+            / {String(heroProducts.length).padStart(2, "0")} New Arrival Suits
           </div>
         </div>
 
@@ -116,7 +116,7 @@ export default function Hero() {
           <div className="order-2 lg:order-1 lg:col-span-6 flex flex-col justify-center">
             <div className="inline-flex items-center gap-2 mb-3">
               <span className="eyebrow text-rose-dark font-semibold tracking-widest">
-                Winter Festive Collection
+                New Arrivals Collection
               </span>
               <span className="rounded-full bg-rose-100 px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-rose-900">
                 Special Offer
@@ -230,19 +230,12 @@ export default function Hero() {
                 {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/15 pointer-events-none" />
 
-                {/* Top Badge Tag */}
-                <div className="absolute left-4 top-4">
-                  <span className="rounded-sm bg-rose-dark/95 backdrop-blur-md px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-cream shadow-xs">
-                    Winter Festive '26
-                  </span>
-                </div>
-
                 {/* Product Detail Floating Card */}
                 <div className="absolute inset-x-4 bottom-4 rounded-sm bg-cream/95 backdrop-blur-md p-4 shadow-lg border border-line/60 transition-transform duration-300 group-hover:-translate-y-1">
                   <div className="flex items-center justify-between gap-3">
                     <div>
                       <p className="text-[11px] uppercase tracking-wider text-rose-dark font-bold">
-                        LAYORA Winter Collection
+                        LAYORA Collection
                       </p>
                       <h2 className="font-display text-base sm:text-lg italic font-bold text-ink line-clamp-1">
                         {currentProduct.name}
