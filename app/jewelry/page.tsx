@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CategoryHeader from "@/components/CategoryHeader";
 import { getCategory } from "@/lib/categories";
-import { buildGeneralContactUrl } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Jewelry — Coming Soon",
@@ -29,17 +28,12 @@ export default function JewelryPage() {
             LAYORA Jewelry Capsule
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-ink/75">
-            Our luxury jewelry line is currently in production. Be the first to know when the new collection drops or place pre-orders directly via WhatsApp.
+            Our luxury jewelry line is currently in production. Check back soon for the new collection drop and launch announcements.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a
-              href={buildGeneralContactUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-whatsapp w-full sm:w-auto"
-            >
-              Get Notified on WhatsApp
-            </a>
+            <Link href="/dresses" className="btn-primary w-full sm:w-auto">
+              Explore Available Dresses
+            </Link>
             <Link href="/dresses" className="btn-outline w-full sm:w-auto">
               Explore Dresses
             </Link>

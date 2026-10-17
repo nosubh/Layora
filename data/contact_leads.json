@@ -1,0 +1,46 @@
+[
+  {
+    "customerName": "Maryam Khan",
+    "phone": "03012233445",
+    "channel": "whatsapp_pk",
+    "inquiry": "Inquiry on dress sizes and shipping",
+    "id": "LEAD-76914",
+    "createdAt": "2026-10-17T20:24:36.914Z"
+  },
+  {
+    "id": "LEAD-101",
+    "createdAt": "2026-10-15T18:37:12.268Z",
+    "customerName": "Maryam Khan",
+    "phone": "+92 301 2233445",
+    "channel": "whatsapp_pk",
+    "inquiry": "Inquired about dress fabric & size chart",
+    "convertedToOrder": false
+  },
+  {
+    "id": "LEAD-102",
+    "createdAt": "2026-10-16T12:37:12.268Z",
+    "customerName": "Noor ul Ain",
+    "channel": "chatbot",
+    "phone": "+92 312 8899001",
+    "inquiry": "Asked about delivery time to Faisalabad",
+    "convertedToOrder": false
+  },
+  {
+    "id": "LEAD-103",
+    "createdAt": "2026-10-17T03:37:12.268Z",
+    "customerName": "Reema",
+    "channel": "whatsapp_intl",
+    "phone": "+971 50 1234567",
+    "inquiry": "Inquired about shipping charges to Dubai",
+    "convertedToOrder": false
+  },
+  {
+    "id": "LEAD-104",
+    "createdAt": "2026-10-17T13:37:12.268Z",
+    "customerName": "Fatima Zahra",
+    "channel": "chatbot",
+    "phone": "+92 334 7766554",
+    "inquiry": "Inquired about custom stitching",
+    "convertedToOrder": false
+  }
+]

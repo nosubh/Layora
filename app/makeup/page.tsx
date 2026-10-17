@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CategoryHeader from "@/components/CategoryHeader";
 import { getCategory } from "@/lib/categories";
-import { buildGeneralContactUrl } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Makeup — Coming Soon",
@@ -29,17 +28,12 @@ export default function MakeupPage() {
             LAYORA Beauty &amp; Makeup
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-ink/75">
-            Our exclusive makeup range is launching shortly. Reach out on WhatsApp for early VIP access, shades preview, and exclusive launch discounts.
+            Our exclusive makeup range is launching shortly. Check back soon for shades preview and launch announcements.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a
-              href={buildGeneralContactUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-whatsapp w-full sm:w-auto"
-            >
-              Get Notified on WhatsApp
-            </a>
+            <Link href="/dresses" className="btn-primary w-full sm:w-auto">
+              Explore Dresses
+            </Link>
             <Link href="/cases" className="btn-outline w-full sm:w-auto">
               Explore Phone Cases
             </Link>

@@ -4,7 +4,6 @@ import CategoryHeader from "@/components/CategoryHeader";
 import ProductGrid from "@/components/ProductGrid";
 import { getProductsBySubcategory } from "@/lib/products";
 import { getSubcategory } from "@/lib/categories";
-import { buildGeneralContactUrl } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Customized Jelly Soaps",
@@ -34,14 +33,12 @@ export default function JellySoapsPage() {
               All 15 Handcrafted Jelly Soaps
             </h2>
           </div>
-          <a
-            href={buildGeneralContactUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-whatsapp text-xs py-2.5 px-4"
+          <Link
+            href="/checkout"
+            className="btn-primary text-xs py-2.5 px-4 inline-flex items-center gap-1.5"
           >
-            Custom Order on WhatsApp 💬
-          </a>
+            ⚡ Instant Checkout
+          </Link>
         </div>
         <ProductGrid products={products} />
       </div>

@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { getProductsByCategory } from "@/lib/products";
-import { buildProductOrderUrl } from "@/lib/whatsapp";
 
 export default function Hero() {
   const allDresses = getProductsByCategory("dresses");
@@ -77,16 +76,6 @@ export default function Hero() {
     ? currentProduct.originalPrice - currentProduct.price
     : 0;
 
-  const whatsappUrl = buildProductOrderUrl(
-    {
-      product: currentProduct,
-      quantity: 1,
-      size: currentProduct.sizes[0] || "M",
-      color: currentProduct.colors[0] || null,
-    },
-    "pk"
-  );
-
   return (
     <section
       className="relative overflow-hidden border-b border-line bg-cream"
@@ -152,20 +141,18 @@ export default function Hero() {
             <div className="mt-6 sm:mt-8 flex flex-wrap items-center gap-3">
               <Link
                 href={`/products/${currentProduct.slug}`}
-                className="btn-primary shadow-sm hover:shadow-md text-xs sm:text-sm"
+                className="btn-primary shadow-sm hover:shadow-md text-xs sm:text-sm font-bold"
               >
-                Shop This Suit →
+                ⚡ Buy Now / View Suit →
               </Link>
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-whatsapp text-xs sm:text-sm"
-              >
-                💬 Order on WhatsApp
-              </a>
               <Link href="/dresses" className="btn-outline text-xs sm:text-sm">
-                View All Dresses
+                Explore All Dresses
+              </Link>
+              <Link
+                href="/checkout"
+                className="text-xs uppercase tracking-wider font-bold text-rose-dark hover:underline py-2 px-1"
+              >
+                Fast Checkout →
               </Link>
             </div>
 

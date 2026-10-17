@@ -67,6 +67,16 @@ export default function FloatingWhatsApp() {
               href={pkUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => {
+                fetch("/api/contact", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    channel: "whatsapp_pk",
+                    inquiry: "Floating WhatsApp Pakistan customer care clicked",
+                  }),
+                }).catch(() => {});
+              }}
               className="flex items-center justify-between rounded-md bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/30 px-3.5 py-2.5 text-xs font-semibold text-ink transition-all duration-200 group"
             >
               <div className="flex items-center gap-2">
@@ -83,6 +93,16 @@ export default function FloatingWhatsApp() {
               href={intlUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => {
+                fetch("/api/contact", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    channel: "whatsapp_intl",
+                    inquiry: "Floating WhatsApp Intl customer care clicked",
+                  }),
+                }).catch(() => {});
+              }}
               className="flex items-center justify-between rounded-md bg-sand hover:bg-sand/80 border border-line px-3.5 py-2.5 text-xs font-semibold text-ink transition-all duration-200 group"
             >
               <div className="flex items-center gap-2">

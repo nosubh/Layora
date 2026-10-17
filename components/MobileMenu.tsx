@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { categories } from "@/lib/categories";
-import { buildGeneralContactUrl } from "@/lib/whatsapp";
 
 export default function MobileMenu() {
   const [open, setOpen] = useState(false);

@@ -5,7 +5,7 @@ import CategoryHeader from "@/components/CategoryHeader";
 import ProductGrid from "@/components/ProductGrid";
 import { getProductsBySubcategory } from "@/lib/products";
 import { getCategory } from "@/lib/categories";
-import { buildGeneralContactUrl } from "@/lib/whatsapp";
+import Link from "next/link";
 
 type SkincareTab =
   | "medicube-sheet-masks"
@@ -173,14 +173,12 @@ export default function SkincarePage() {
                 : "Authentic Medicube sheet & tube masks, Sadour sheet masks, Laneige lip sleeping masks, SHEGLAM lip oils, snail mucin serums, and jelly soaps."}
             </p>
           </div>
-          <a
-            href={buildGeneralContactUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-whatsapp text-xs py-2.5 px-4 self-start sm:self-auto shrink-0"
+          <Link
+            href="/checkout"
+            className="btn-primary text-xs py-2.5 px-4 self-start sm:self-auto shrink-0 inline-flex items-center gap-1.5"
           >
-            Order on WhatsApp 💬
-          </a>
+            ⚡ Instant Checkout
+          </Link>
         </div>
 
         {/* Product Grid */}

@@ -45,7 +45,7 @@ const REVIEWS: Review[] = [
     date: "Verified Order • 5 days ago",
     reviewTitle: "Perfect fitting & fast delivery",
     comment:
-      "Ordered on WhatsApp and it arrived quickly. The color and stitching are 10/10.",
+      "Ordered directly from the website and it arrived quickly. The color and stitching are 10/10.",
     verifiedBuyer: true,
   },
   // 3. Persian Heritage Phone Case
@@ -255,8 +255,8 @@ export default function CustomerReviews() {
             <p className="text-xs text-ink/65 uppercase tracking-wider mt-1">Delivery Nationwide</p>
           </div>
           <div className="p-3">
-            <p className="font-display text-2xl sm:text-3xl italic font-bold text-ink">24/7</p>
-            <p className="text-xs text-ink/65 uppercase tracking-wider mt-1">WhatsApp Concierge</p>
+            <p className="font-display text-2xl sm:text-3xl italic font-bold text-ink">JazzCash</p>
+            <p className="text-xs text-ink/65 uppercase tracking-wider mt-1">&amp; COD Available</p>
           </div>
         </div>
       </div>

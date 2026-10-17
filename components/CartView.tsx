@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "@/lib/cart-context";
 import { formatPrice } from "@/lib/format";
-import { buildCartOrderUrl } from "@/lib/whatsapp";
 import QuantitySelector from "./QuantitySelector";
 
 export default function CartView() {
@@ -27,9 +26,6 @@ export default function CartView() {
       </div>
     );
   }
-
-  const whatsappUrlPk = buildCartOrderUrl(items, "pk");
-  const whatsappUrlIntl = buildCartOrderUrl(items, "intl");
 
   return (
     <div className="container-layora py-10 lg:py-16">
@@ -138,32 +134,59 @@ export default function CartView() {
 
         <div className="h-fit border border-line p-6 sm:p-8">
           <h2 className="font-display text-xl italic">Order Summary</h2>
-          <div className="mt-5 flex items-center justify-between text-sm">
-            <span className="text-ink/60">Subtotal</span>
-            <span>{formatPrice(subtotal, items[0]?.currency ?? "PKR")}</span>
+          <div className="mt-5 space-y-2 border-t border-line/60 pt-4 text-xs text-ink/75">
+            <div className="flex items-center justify-between">
+              <span>Subtotal</span>
+              <span className="font-semibold text-ink">{formatPrice(subtotal, items[0]?.currency ?? "PKR")}</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span>Standard Delivery</span>
+              <span>
+                {subtotal >= 5000 ? (
+                  <span className="text-emerald-700 font-bold uppercase text-[11px]">
+                    FREE Delivery
+                  </span>
+                ) : (
+                  formatPrice(250, items[0]?.currency ?? "PKR")
+                )}
+              </span>
+            </div>
+            {subtotal < 5000 && (
+              <p className="text-[10px] text-rose-dark bg-rose/10 px-2 py-1 rounded">
+                💡 Add {formatPrice(5000 - subtotal, "PKR")} more for FREE Delivery!
+              </p>
+            )}
+            <div className="flex items-baseline justify-between border-t border-line/60 pt-3 text-sm font-bold text-ink">
+              <span>Estimated Total</span>
+              <span className="font-display text-xl text-rose-dark">
+                {formatPrice(subtotal + (subtotal >= 5000 ? 0 : 250), items[0]?.currency ?? "PKR")}
+              </span>
+            </div>
           </div>
-          <p className="mt-2 text-xs text-ink/45">
-            Delivery charges are confirmed with you directly on WhatsApp.
-          </p>
 
           <div className="mt-6 flex flex-col gap-2.5">
-            <a
-              href={whatsappUrlPk}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-whatsapp w-full flex items-center justify-center gap-2 text-xs sm:text-sm"
+            {/* Sole Primary Action: Direct Website Checkout */}
+            <Link
+              href="/checkout"
+              className="btn-primary w-full flex items-center justify-center gap-2 text-xs sm:text-sm py-4 font-bold tracking-wider uppercase shadow-md hover:shadow-lg transition-all"
             >
-              <span>🇵🇰 Checkout via WhatsApp (Pakistan)</span>
-            </a>
+              <span>PROCEED TO CHECKOUT &amp; PAY →</span>
+            </Link>
 
-            <a
-              href={whatsappUrlIntl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-whatsapp w-full flex items-center justify-center gap-2 text-xs sm:text-sm bg-emerald-700 hover:bg-emerald-800"
-            >
-              <span>🌍 Checkout via WhatsApp (International)</span>
-            </a>
+            <div className="mt-3 pt-3 border-t border-line/60 text-[11px] text-ink/65 space-y-1.5">
+              <p className="flex items-center gap-1.5">
+                <span className="text-emerald-700">✓</span>
+                <span>Direct Bank Transfer (IBFT) &amp; Cash on Delivery</span>
+              </p>
+              <p className="flex items-center gap-1.5">
+                <span className="text-emerald-700">✓</span>
+                <span>Automatic Order &amp; Billing Sheet Confirmation</span>
+              </p>
+              <p className="flex items-center gap-1.5">
+                <span className="text-emerald-700">✓</span>
+                <span>1-Week Guaranteed Nationwide Delivery</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>

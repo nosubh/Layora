@@ -5,10 +5,9 @@ import {
   SITE_TAGLINE,
   INSTAGRAM_HANDLE,
   INSTAGRAM_URL,
-  WHATSAPP_DISPLAY_PK,
-  WHATSAPP_DISPLAY_INTL,
+  JAZZCASH_NUMBER,
+  JAZZCASH_DISPLAY,
 } from "@/lib/config";
-import { buildGeneralContactUrl } from "@/lib/whatsapp";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -31,8 +30,8 @@ export default function Footer() {
             <p className="text-xs text-ink/65 mt-0.5">Pakistan &amp; Worldwide delivery</p>
           </div>
           <div>
-            <p className="font-display text-lg italic text-ink">Direct WhatsApp</p>
-            <p className="text-xs text-ink/65 mt-0.5">Pakistan &amp; International support</p>
+            <p className="font-display text-lg italic text-ink">JazzCash &amp; COD</p>
+            <p className="text-xs text-ink/65 mt-0.5">Online JazzCash &amp; Cash on Delivery</p>
           </div>
         </div>
       </div>
@@ -94,31 +93,26 @@ export default function Footer() {
 
         {/* Customer Care */}
         <div>
-          <h3 className="eyebrow mb-5">Customer Care</h3>
+          <h3 className="eyebrow mb-5">Customer Care &amp; Support</h3>
           <ul className="flex flex-col gap-3 text-sm text-ink/75">
             <li>
-              <a
-                href={buildGeneralContactUrl("pk")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-rose-dark font-medium text-emerald-800"
-              >
-                🇵🇰 Pakistan: {WHATSAPP_DISPLAY_PK}
-              </a>
+              <div className="font-medium text-ink">
+                📱 JazzCash: <span className="text-rose-dark font-bold font-mono">{JAZZCASH_DISPLAY}</span>
+              </div>
             </li>
             <li>
-              <a
-                href={buildGeneralContactUrl("intl")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-rose-dark font-medium text-emerald-800"
-              >
-                🌍 Intl / UAE: {WHATSAPP_DISPLAY_INTL}
-              </a>
+              <span className="text-xs text-ink/65">
+                💵 Cash on Delivery available nationwide
+              </span>
             </li>
             <li>
               <Link href="/cart" className="hover:text-rose-dark">
                 Shopping Cart
+              </Link>
+            </li>
+            <li>
+              <Link href="/checkout" className="hover:text-rose-dark font-medium text-rose-dark">
+                ⚡ Online Checkout &amp; Pay
               </Link>
             </li>
             <li>
@@ -134,38 +128,31 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Dedicated WhatsApp Order & Shipping Policy Card */}
+        {/* Dedicated Ordering & Shipping Policy Card */}
         <div>
           <h3 className="eyebrow mb-5">Ordering &amp; Shipping</h3>
           <div className="rounded-sm border border-line/80 bg-cream/70 p-4 text-xs space-y-3 text-ink/80 shadow-2xs">
             <div>
               <p className="text-[10px] uppercase tracking-wider font-semibold text-rose-dark">
-                Order via WhatsApp
+                Direct Website Ordering
               </p>
-              <div className="mt-1.5 space-y-1.5">
-                <a
-                  href={buildGeneralContactUrl("pk")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block font-semibold text-emerald-800 hover:underline"
+              <div className="mt-1.5 space-y-1">
+                <Link
+                  href="/checkout"
+                  className="block font-bold text-rose-dark hover:underline"
                 >
-                  🇵🇰 {WHATSAPP_DISPLAY_PK} (Pakistan)
-                </a>
-                <a
-                  href={buildGeneralContactUrl("intl")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block font-semibold text-emerald-800 hover:underline"
-                >
-                  🌍 {WHATSAPP_DISPLAY_INTL} (International)
-                </a>
+                  ⚡ Instant Online Checkout →
+                </Link>
+                <p className="text-[11px] text-ink/65 leading-tight">
+                  Orders automatically sync to billing &amp; inventory sheets.
+                </p>
               </div>
             </div>
             <div className="border-t border-line/50 pt-2">
               <p className="text-[10px] uppercase tracking-wider font-semibold text-ink/60">
-                Payment Mode
+                Payment Modes
               </p>
-              <p className="font-medium text-ink">Bank Transfer</p>
+              <p className="font-medium text-ink">Cash on Delivery &amp; JazzCash ({JAZZCASH_NUMBER})</p>
             </div>
             <div className="border-t border-line/50 pt-2">
               <p className="text-[10px] uppercase tracking-wider font-semibold text-ink/60">

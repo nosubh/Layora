@@ -134,7 +134,7 @@ export default function SizeChart({ selectedSize, onSelectSize }: SizeChartProps
       </div>
 
       <p className="mt-3.5 text-[11px] text-ink/60">
-        💡 <em>Tip: All measurements are ready-garment sizes. For customized tailoring advice or specific alterations, message us on WhatsApp.</em>
+        💡 <em>Tip: All measurements are ready-garment sizes. For customized tailoring advice or specific alterations, please add special notes in your checkout order.</em>
       </p>
     </div>
   );

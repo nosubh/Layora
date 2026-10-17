@@ -31,7 +31,7 @@ export default function Header() {
           </div>
 
           {/* Right: Cart Icon */}
-          <div className="flex flex-1 items-center justify-end">
+          <div className="flex flex-1 items-center justify-end gap-2.5">
             <div className="rounded-full bg-cream/85 backdrop-blur-md px-3 py-1.5 shadow-2xs">
               <CartIcon />
             </div>

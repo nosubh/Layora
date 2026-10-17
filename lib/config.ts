@@ -29,3 +29,22 @@ export const SITE_DESCRIPTION =
 // Used to build absolute product links inside WhatsApp messages.
 // Replace with your real domain once deployed (e.g. "https://layora.com").
 export const SITE_URL = "https://layora.vercel.app";
+
+// ==========================================
+// PAYMENT DETAILS (Shown at Checkout)
+// ==========================================
+export const JAZZCASH_NUMBER = "03390131877";
+export const JAZZCASH_DISPLAY = "+92 339 0131877";
+export const JAZZCASH_TITLE = "LAYORA";
+
+export const RAAST_ID = "03390131877";
+export const BANK_NAME = "Meezan Bank";
+export const BANK_ACCOUNT_TITLE = "LAYORA";
+export const BANK_ACCOUNT_NUMBER = "01020304050607";
+export const BANK_IBAN = "PK00MEZN0001020304050607";
+
+// Google Sheets Webhook App URL (configured in .env or Store Admin settings)
+export const GOOGLE_SHEET_WEBHOOK_URL =
+  process.env.GOOGLE_SHEET_WEBHOOK_URL ||
+  "https://script.google.com/macros/s/AKfycbzfLKlAy2Kq1GZHXAdkktRKGNGk_kV6LLeyuTjAF8KNZuPSPg2HuSHdZgGKWdFtTHoH/exec";
+

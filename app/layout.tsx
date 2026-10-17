@@ -3,7 +3,7 @@ import { Fraunces, Manrope } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import ChatBot from "@/components/ChatBot";
 import { CartProvider } from "@/lib/cart-context";
 import { SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION } from "@/lib/config";
 
@@ -49,7 +49,7 @@ export default function RootLayout({
           <Header />
           <main className="min-h-screen">{children}</main>
           <Footer />
-          <FloatingWhatsApp />
+          <ChatBot />
         </CartProvider>
       </body>
     </html>

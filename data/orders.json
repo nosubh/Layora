@@ -1,0 +1,330 @@
+[
+  {
+    "customerName": "Test With Screenshot",
+    "phone": "03390131877",
+    "address": "Lahore",
+    "city": "Lahore",
+    "country": "Pakistan",
+    "items": [
+      {
+        "productId": "d-1",
+        "name": "Suit",
+        "price": 1000,
+        "quantity": 1
+      }
+    ],
+    "subtotal": 1000,
+    "shippingFee": 0,
+    "totalAmount": 1000,
+    "currency": "PKR",
+    "paymentMethod": "jazzcash",
+    "paymentStatus": "paid",
+    "transactionId": "JC-1029384756",
+    "paymentScreenshot": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==",
+    "notes": "",
+    "status": "paid",
+    "source": "website_checkout",
+    "id": "LAY-8337",
+    "createdAt": "2026-10-17T21:42:27.006Z"
+  },
+  {
+    "customerName": "Zahid Test",
+    "phone": "03390131877",
+    "email": "zahid@test.com",
+    "address": "Defence Phase 5",
+    "city": "Lahore",
+    "country": "Pakistan",
+    "items": [
+      {
+        "productId": "dress-01",
+        "name": "Blush Vanilla Festive Suit",
+        "price": 8500,
+        "quantity": 1
+      }
+    ],
+    "subtotal": 8500,
+    "shippingFee": 0,
+    "totalAmount": 8500,
+    "currency": "PKR",
+    "paymentMethod": "jazzcash",
+    "paymentStatus": "paid",
+    "transactionId": "JC-992014812",
+    "notes": "Testing JazzCash payment on +923390131877",
+    "status": "paid",
+    "source": "website_checkout",
+    "id": "LAY-9969",
+    "createdAt": "2026-10-17T21:14:01.006Z"
+  },
+  {
+    "customerName": "AYESHA KHAN",
+    "phone": "03394006423",
+    "email": "yousbah@gmail.com",
+    "address": "House NO 102 Lahore",
+    "city": "Peshawar",
+    "country": "Pakistan",
+    "items": [
+      {
+        "productId": "ethnic-new-blackblue",
+        "name": "Black & Blue 3-Piece Printed Suit",
+        "price": 6000,
+        "quantity": 1,
+        "size": "S",
+        "color": "Black"
+      }
+    ],
+    "subtotal": 6000,
+    "shippingFee": 0,
+    "totalAmount": 6000,
+    "currency": "PKR",
+    "paymentMethod": "cod",
+    "paymentStatus": "pending",
+    "transactionId": "",
+    "notes": "NO",
+    "status": "confirmed",
+    "source": "website_checkout",
+    "id": "LAY-9696",
+    "createdAt": "2026-10-17T20:32:13.339Z"
+  },
+  {
+    "customerName": "Zahid Khan (Verified Live)",
+    "phone": "03390131877",
+    "email": "zahid@layora.com",
+    "address": "Model Town, Block J",
+    "city": "Lahore",
+    "country": "Pakistan",
+    "items": [
+      {
+        "productId": "rose-blossom-jelly-soap",
+        "name": "Rose Blossom Glow Jelly Soap",
+        "price": 400,
+        "quantity": 2,
+        "size": "Single Bar (100g)"
+      }
+    ],
+    "subtotal": 800,
+    "shippingFee": 250,
+    "totalAmount": 1050,
+    "currency": "PKR",
+    "paymentMethod": "bank_transfer",
+    "paymentStatus": "paid",
+    "transactionId": "MEZN-LIVE-102938",
+    "notes": "",
+    "status": "paid",
+    "source": "website_checkout",
+    "id": "LAY-4266",
+    "createdAt": "2026-10-17T20:25:04.722Z"
+  },
+  {
+    "customerName": "KHAN SHAB",
+    "phone": "03371865789",
+    "email": "KAHNI@GMAIL.COM",
+    "address": "HOUSE 109 LAHORE",
+    "city": "Lahore",
+    "country": "Pakistan",
+    "items": [
+      {
+        "productId": "soap-006",
+        "name": "Blush Peony Artisan Jelly Soap",
+        "price": 400,
+        "quantity": 1,
+        "size": "Single Bar (100g)",
+        "color": "Blush Pink"
+      }
+    ],
+    "subtotal": 400,
+    "shippingFee": 250,
+    "totalAmount": 650,
+    "currency": "PKR",
+    "paymentMethod": "cod",
+    "paymentStatus": "pending",
+    "transactionId": "",
+    "notes": "",
+    "status": "confirmed",
+    "source": "website_checkout",
+    "id": "LAY-1860",
+    "createdAt": "2026-10-17T20:20:28.282Z"
+  },
+  {
+    "customerName": "yousbah zahid",
+    "phone": "03394006423",
+    "email": "yousbah@gmail.com",
+    "address": "House NO 102 Lahore",
+    "city": "Lahore",
+    "country": "Pakistan",
+    "items": [
+      {
+        "productId": "soap-002",
+        "name": "Honey Amber Botanical Jelly Soap",
+        "price": 400,
+        "quantity": 1,
+        "size": "Single Bar (100g)",
+        "color": "Golden Amber"
+      }
+    ],
+    "subtotal": 400,
+    "shippingFee": 250,
+    "totalAmount": 650,
+    "currency": "PKR",
+    "paymentMethod": "cod",
+    "paymentStatus": "pending",
+    "transactionId": "",
+    "notes": "NO",
+    "status": "confirmed",
+    "source": "website_checkout",
+    "id": "LAY-5793",
+    "createdAt": "2026-10-17T20:10:24.822Z"
+  },
+  {
+    "customerName": "Zahid Khan",
+    "phone": "03001234567",
+    "email": "zahid@example.com",
+    "address": "Gulberg 3",
+    "city": "Lahore",
+    "country": "Pakistan",
+    "items": [
+      {
+        "productId": "honey-amber-jelly-soap",
+        "name": "Honey Amber Botanical Jelly Soap",
+        "price": 400,
+        "quantity": 2
+      }
+    ],
+    "subtotal": 800,
+    "shippingFee": 250,
+    "totalAmount": 1050,
+    "currency": "PKR",
+    "paymentMethod": "bank_transfer",
+    "paymentStatus": "paid",
+    "transactionId": "MEZN-TEST-8812",
+    "notes": "",
+    "status": "paid",
+    "source": "website_checkout",
+    "id": "LAY-9427",
+    "createdAt": "2026-10-17T20:01:22.388Z"
+  },
+  {
+    "id": "LAY-8401",
+    "createdAt": "2026-10-16T06:37:12.267Z",
+    "customerName": "Ayesha Malik",
+    "phone": "+92 300 1234567",
+    "email": "ayesha.malik@example.com",
+    "address": "House 42, Street 8, DHA Phase 5",
+    "city": "Lahore",
+    "country": "Pakistan",
+    "items": [
+      {
+        "productId": "brown-2piece-suit",
+        "name": "Brown Printed 2-Piece Suit",
+        "price": 4000,
+        "quantity": 1,
+        "size": "M",
+        "color": "Brown"
+      }
+    ],
+    "subtotal": 4000,
+    "shippingFee": 0,
+    "totalAmount": 4000,
+    "currency": "PKR",
+    "paymentMethod": "bank_transfer",
+    "paymentStatus": "verified",
+    "transactionId": "MEZN-948271049",
+    "status": "paid",
+    "source": "website_checkout",
+    "notes": "Please pack with extra care for gift."
+  },
+  {
+    "id": "LAY-8402",
+    "createdAt": "2026-10-16T22:37:12.267Z",
+    "customerName": "Zainab Fatima",
+    "phone": "+92 321 9876543",
+    "email": "zainab.f@example.com",
+    "address": "Apartment 4B, Clifton Block 4",
+    "city": "Karachi",
+    "country": "Pakistan",
+    "items": [
+      {
+        "productId": "white-3piece-suit",
+        "name": "White 3-Piece Festive Ensemble",
+        "price": 5000,
+        "quantity": 1,
+        "size": "L",
+        "color": "Ivory White"
+      },
+      {
+        "productId": "bts-dynamite-pop-case",
+        "name": "BTS Dynamite Pop Art Case",
+        "price": 1900,
+        "quantity": 1
+      }
+    ],
+    "subtotal": 6900,
+    "shippingFee": 0,
+    "totalAmount": 6900,
+    "currency": "PKR",
+    "paymentMethod": "cod",
+    "paymentStatus": "pending",
+    "status": "confirmed",
+    "source": "website_checkout"
+  },
+  {
+    "id": "LAY-8403",
+    "createdAt": "2026-10-17T10:37:12.268Z",
+    "customerName": "Hira Tariq",
+    "phone": "+92 333 4567890",
+    "email": "hira.t@example.com",
+    "address": "Street 14, F-7/2",
+    "city": "Islamabad",
+    "country": "Pakistan",
+    "items": [
+      {
+        "productId": "rose-blossom-jelly-soap",
+        "name": "Rose Blossom Glow Jelly Soap",
+        "price": 400,
+        "quantity": 3
+      },
+      {
+        "productId": "signature-layora-jelly-soap-set",
+        "name": "Signature Botanical Jelly Soaps (Set of 6)",
+        "price": 1500,
+        "quantity": 1
+      }
+    ],
+    "subtotal": 2700,
+    "shippingFee": 250,
+    "totalAmount": 2950,
+    "currency": "PKR",
+    "paymentMethod": "bank_transfer",
+    "paymentStatus": "paid",
+    "transactionId": "HBL-TRX-839211",
+    "status": "paid",
+    "source": "website_checkout"
+  },
+  {
+    "id": "LAY-8404",
+    "createdAt": "2026-10-17T16:37:12.268Z",
+    "customerName": "Sara Ahmed",
+    "phone": "+92 345 5551234",
+    "email": "sara.ahmed@example.com",
+    "address": "Model Town, Block C",
+    "city": "Lahore",
+    "country": "Pakistan",
+    "items": [
+      {
+        "productId": "purple-2piece-suit",
+        "name": "Purple 2-Piece Printed Suit",
+        "price": 4000,
+        "quantity": 1,
+        "size": "S"
+      }
+    ],
+    "subtotal": 4000,
+    "shippingFee": 0,
+    "totalAmount": 4000,
+    "currency": "PKR",
+    "paymentMethod": "bank_transfer",
+    "paymentStatus": "pending",
+    "transactionId": "Faysal-Pending-092",
+    "status": "confirmed",
+    "source": "website_checkout"
+  }
+]

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CategoryHeader from "@/components/CategoryHeader";
 import { getSubcategory } from "@/lib/categories";
-import { buildGeneralContactUrl } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Serums & Oils — Coming Soon",
@@ -29,17 +28,12 @@ export default function SerumsOilsPage() {
             LAYORA Radiance Serums &amp; Oils
           </h2>
           <p className="mt-4 text-sm sm:text-base leading-relaxed text-ink/75">
-            Our exclusive botanical facial serums and cold-pressed facial oils are in final formulation. Connect on WhatsApp for early VIP launch access and discounts.
+            Our exclusive botanical facial serums and cold-pressed facial oils are in final formulation. Check back soon for launch updates.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a
-              href={buildGeneralContactUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-whatsapp w-full sm:w-auto"
-            >
-              Get VIP Notification
-            </a>
+            <Link href="/skincare" className="btn-primary w-full sm:w-auto">
+              Browse Available Skincare
+            </Link>
             <Link href="/skincare/jelly-soaps" className="btn-outline w-full sm:w-auto">
               Shop Jelly Soaps
             </Link>

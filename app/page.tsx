@@ -4,7 +4,6 @@ import SectionHeading from "@/components/SectionHeading";
 import ProductGrid from "@/components/ProductGrid";
 import CustomerReviews from "@/components/CustomerReviews";
 import { getProductsByCategory, getProductsBySubcategory } from "@/lib/products";
-import { buildGeneralContactUrl } from "@/lib/whatsapp";
 import Image from "next/image";
 
 export default function HomePage() {
@@ -113,34 +112,29 @@ export default function HomePage() {
       {/* Customer Reviews & Testimonials Section (3 Dresses & 2 Mobile Cases) */}
       <CustomerReviews />
 
-      {/* Direct WhatsApp Ordering */}
+      {/* Direct Ordering & Checkout Strip */}
       <section className="border-t border-line bg-ink py-16 text-cream lg:py-20">
         <div className="container-layora flex flex-col items-center gap-5 text-center">
-          <p className="eyebrow text-rose-light">Direct Assistance</p>
+          <p className="eyebrow text-rose-light">Direct Ordering &amp; Hassle-Free Checkout</p>
           <h2 className="font-display text-3xl italic sm:text-4xl">
-            Custom Sizing or Order Inquiries?
+            Ready to Order Your Luxury Pieces?
           </h2>
           <p className="max-w-md text-sm text-cream/70">
-            Message us directly on WhatsApp for size advice, fabric details, or
-            customized orders.
+            Enjoy nationwide Cash on Delivery (COD) or instant online payment via JazzCash (+923390131877).
           </p>
           <div className="mt-3 flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full max-w-md">
-            <a
-              href={buildGeneralContactUrl("pk")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-whatsapp w-full sm:w-auto text-xs sm:text-sm"
+            <Link
+              href="/checkout"
+              className="btn-primary w-full sm:w-auto text-xs sm:text-sm bg-rose-dark hover:bg-rose-dark/90 text-cream px-6 py-3"
             >
-              🇵🇰 Pakistan WhatsApp
-            </a>
-            <a
-              href={buildGeneralContactUrl("intl")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-whatsapp w-full sm:w-auto text-xs sm:text-sm bg-emerald-700 hover:bg-emerald-800"
+              ⚡ Instant Online Checkout
+            </Link>
+            <Link
+              href="/dresses"
+              className="btn-outline w-full sm:w-auto text-xs sm:text-sm border-cream/30 text-cream hover:bg-cream hover:text-ink px-6 py-3"
             >
-              🌍 International WhatsApp
-            </a>
+              Browse Collections
+            </Link>
           </div>
         </div>
       </section>

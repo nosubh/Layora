@@ -2,9 +2,9 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Product } from "@/lib/types";
 import { formatPrice } from "@/lib/format";
-import { buildProductOrderUrl } from "@/lib/whatsapp";
 import { useCart } from "@/lib/cart-context";
 import QuantitySelector from "./QuantitySelector";
 import ProductGallery from "./ProductGallery";
@@ -18,21 +18,12 @@ export default function ProductDetail({
   product: Product;
   related: Product[];
 }) {
+  const router = useRouter();
   const { addItem } = useCart();
   const [size, setSize] = useState<string | null>(product.sizes[0] ?? null);
   const [color, setColor] = useState<string | null>(product.colors[0] ?? null);
   const [quantity, setQuantity] = useState(1);
   const [justAdded, setJustAdded] = useState(false);
-
-  const whatsappUrlPk = useMemo(
-    () => buildProductOrderUrl({ product, quantity, size, color }, "pk"),
-    [product, quantity, size, color]
-  );
-
-  const whatsappUrlIntl = useMemo(
-    () => buildProductOrderUrl({ product, quantity, size, color }, "intl"),
-    [product, quantity, size, color]
-  );
 
   function handleAddToCart() {
     addItem({
@@ -181,40 +172,58 @@ export default function ProductDetail({
             />
           </div>
 
-          <div className="mt-7 flex flex-col gap-2.5">
+          <div className="mt-7 flex flex-col gap-3">
+            {/* Primary Action: Direct Buy Now with Instant Checkout */}
+            <button
+              onClick={() => {
+                if (!product.available) return;
+                addItem({
+                  productId: product.id,
+                  slug: product.slug,
+                  name: product.name,
+                  price: product.price,
+                  image: product.images[0] ?? "",
+                  size,
+                  color,
+                  quantity,
+                  currency: product.currency,
+                });
+                router.push("/checkout");
+              }}
+              disabled={!product.available}
+              className="btn-primary w-full py-4 text-xs sm:text-sm font-bold tracking-widest uppercase shadow-md hover:shadow-lg hover:scale-[1.01] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-40 transition-all flex items-center justify-center gap-2"
+            >
+              <span>⚡ BUY NOW</span>
+            </button>
+
+            {/* Secondary Action: Add to Cart */}
             <button
               onClick={handleAddToCart}
               disabled={!product.available}
-              className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-40"
+              className="btn-outline w-full py-3.5 text-xs sm:text-sm font-semibold tracking-wider uppercase hover:border-ink hover:bg-sand/40 disabled:cursor-not-allowed disabled:opacity-40 transition-all flex items-center justify-center gap-2"
             >
-              {justAdded ? "Added to Cart ✓" : "Add to Cart"}
+              <span>{justAdded ? "Added to Cart ✓" : "Add to Cart"}</span>
             </button>
 
-            {/* Pakistan WhatsApp Order */}
-            <a
-              href={whatsappUrlPk}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-disabled={!product.available}
-              className={`btn-whatsapp w-full flex items-center justify-center gap-2 ${
-                !product.available ? "pointer-events-none opacity-40" : ""
-              }`}
-            >
-              <span>🇵🇰 Order via WhatsApp (Pakistan)</span>
-            </a>
-
-            {/* International WhatsApp Order */}
-            <a
-              href={whatsappUrlIntl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-disabled={!product.available}
-              className={`btn-whatsapp w-full flex items-center justify-center gap-2 bg-emerald-700 hover:bg-emerald-800 ${
-                !product.available ? "pointer-events-none opacity-40" : ""
-              }`}
-            >
-              <span>🌍 Order via WhatsApp (International)</span>
-            </a>
+            {/* Trust & Guarantee Badges */}
+            <div className="mt-3 pt-4 border-t border-line/70 grid grid-cols-2 gap-2 text-[11px] text-ink/70">
+              <div className="flex items-center gap-1.5">
+                <span className="text-emerald-700">🔒</span>
+                <span>Secure Online Checkout</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="text-rose-dark">🚚</span>
+                <span>1-Week Standard Delivery</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="text-rose-dark">🔄</span>
+                <span>7-Day Exchange Window</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="text-emerald-700">✓</span>
+                <span>Direct Bank IBFT &amp; COD</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
