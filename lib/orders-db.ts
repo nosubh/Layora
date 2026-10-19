@@ -327,9 +327,39 @@ export function getSheetWebhookUrl(): string {
   return GOOGLE_SHEET_WEBHOOK_URL || "";
 }
 
-export function saveSheetWebhookUrl(url: string) {
+export function getAdminEmail(): string {
   ensureDataDir();
-  fs.writeFileSync(CONFIG_FILE, JSON.stringify({ webhookUrl: url }, null, 2), "utf8");
+  if (fs.existsSync(CONFIG_FILE)) {
+    try {
+      const parsed = JSON.parse(fs.readFileSync(CONFIG_FILE, "utf8"));
+      if (parsed.adminEmail) return parsed.adminEmail;
+    } catch {}
+  }
+  return process.env.ADMIN_NOTIFICATION_EMAIL || "";
+}
+
+export function saveSheetConfig(config: { webhookUrl?: string; adminEmail?: string }) {
+  ensureDataDir();
+  let current: any = {};
+  if (fs.existsSync(CONFIG_FILE)) {
+    try {
+      current = JSON.parse(fs.readFileSync(CONFIG_FILE, "utf8"));
+    } catch {}
+  }
+  const updated = {
+    ...current,
+    ...(config.webhookUrl !== undefined ? { webhookUrl: config.webhookUrl } : {}),
+    ...(config.adminEmail !== undefined ? { adminEmail: config.adminEmail } : {}),
+  };
+  fs.writeFileSync(CONFIG_FILE, JSON.stringify(updated, null, 2), "utf8");
+}
+
+export function saveSheetWebhookUrl(url: string) {
+  saveSheetConfig({ webhookUrl: url });
+}
+
+export function saveAdminEmail(email: string) {
+  saveSheetConfig({ adminEmail: email });
 }
 
 export function calculateMetrics(): StoreMetrics {

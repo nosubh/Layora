@@ -8,7 +8,14 @@ import Image from "next/image";
 
 export default function HomePage() {
   const allDresses = getProductsByCategory("dresses");
-  const featuredAccessories = getProductsByCategory("accessories").filter((p) => p.featured);
+  const braceletProducts = getProductsByCategory("accessories").filter(
+    (p) =>
+      p.subcategory === "bracelets" &&
+      p.images.some((img) => img.toLowerCase().includes("/products/bracelets"))
+  );
+  const featuredAccessories = getProductsByCategory("accessories").filter(
+    (p) => p.featured && p.subcategory !== "bracelets"
+  );
   const allAccessories = getProductsByCategory("accessories");
   const jellySoapProducts = getProductsBySubcategory("skincare", "jelly-soaps");
 
@@ -16,8 +23,33 @@ export default function HomePage() {
     <>
       <Hero />
 
+      {/* Bracelets, Watches & Hand Chains Spotlight */}
+      <section className="border-b border-line bg-cream py-14 lg:py-20">
+        <div className="container-layora">
+          <div className="mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4 lg:mb-10">
+            <div>
+              <p className="eyebrow mb-2 text-rose-dark">Trending Now • Handcrafted Jewelry</p>
+              <h2 className="font-display text-3xl italic sm:text-4xl lg:text-5xl text-ink">
+                Bracelets, Watches &amp; Hand Chains
+              </h2>
+              <p className="mt-2 text-sm text-ink/70 max-w-lg">
+                Four-Leaf Clover luxury watches, floral crystal hand chains (Hathphool), and stackable tulip charm bracelets — special sale starting at PKR 399.
+              </p>
+            </div>
+            <Link
+              href="/bracelets"
+              className="inline-flex items-center gap-2 self-start md:self-auto border-b border-ink/40 pb-0.5 text-[12px] uppercase tracking-wide text-ink/70 transition-colors hover:border-rose-dark hover:text-rose-dark font-bold"
+            >
+              Shop All Bracelets ({braceletProducts.length}) →
+            </Link>
+          </div>
+
+          <ProductGrid products={braceletProducts} />
+        </div>
+      </section>
+
       {/* Skincare & Customized Jelly Soaps Spotlight */}
-      <section className="border-b border-line bg-cream py-16 lg:py-24">
+      <section className="border-b border-line bg-sand/20 py-16 lg:py-24">
         <div className="container-layora">
           <div className="mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4 lg:mb-10">
             <div>
@@ -42,7 +74,7 @@ export default function HomePage() {
       </section>
 
       {/* Accessories & Pop Art Mobile Cases Spotlight */}
-      <section className="border-b border-line bg-sand/30 py-16 lg:py-24">
+      <section className="border-b border-line bg-cream py-16 lg:py-24">
         <div className="container-layora">
           <div className="mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4 lg:mb-10">
             <div>
@@ -109,7 +141,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Customer Reviews & Testimonials Section (3 Dresses & 2 Mobile Cases) */}
+      {/* Customer Reviews & Testimonials Section */}
       <CustomerReviews />
 
       {/* Direct Ordering & Checkout Strip */}
@@ -130,10 +162,10 @@ export default function HomePage() {
               ⚡ Instant Online Checkout
             </Link>
             <Link
-              href="/dresses"
+              href="/bracelets"
               className="btn-outline w-full sm:w-auto text-xs sm:text-sm border-cream/30 text-cream hover:bg-cream hover:text-ink px-6 py-3"
             >
-              Browse Collections
+              Explore Bracelets
             </Link>
           </div>
         </div>
@@ -141,4 +173,3 @@ export default function HomePage() {
     </>
   );
 }
-

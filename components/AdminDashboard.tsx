@@ -20,11 +20,14 @@ export default function AdminDashboard() {
   const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
-  // Google Sheet Webhook state
+  // Google Sheet Webhook & Notification state
   const [webhookUrl, setWebhookUrl] = useState("");
+  const [adminEmail, setAdminEmail] = useState("");
   const [isConfigured, setIsConfigured] = useState(false);
   const [syncStatus, setSyncStatus] = useState<string | null>(null);
   const [isSyncing, setIsSyncing] = useState(false);
+  const [isSendingTestEmail, setIsSendingTestEmail] = useState(false);
+  const [testEmailStatus, setTestEmailStatus] = useState<string | null>(null);
   const [showScriptModal, setShowScriptModal] = useState(false);
   const [copiedScript, setCopiedScript] = useState(false);
 
@@ -53,6 +56,7 @@ export default function AdminDashboard() {
       const sheetData = await sheetRes.json();
       if (sheetData.success) {
         setWebhookUrl(sheetData.webhookUrl || "");
+        setAdminEmail(sheetData.adminEmail || "");
         setIsConfigured(sheetData.isConfigured || false);
       }
     } catch (err) {
@@ -126,6 +130,7 @@ export default function AdminDashboard() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           webhookUrl,
+          adminEmail,
           action: "batch_sync",
         }),
       });
@@ -140,6 +145,32 @@ export default function AdminDashboard() {
       setSyncStatus(`⚠️ Sync failed: ${err.message}`);
     } finally {
       setIsSyncing(false);
+    }
+  };
+
+  const handleSendTestEmail = async () => {
+    setIsSendingTestEmail(true);
+    setTestEmailStatus(null);
+    try {
+      const res = await fetch("/api/sync-sheet", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          webhookUrl,
+          adminEmail,
+          action: "test_email",
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setTestEmailStatus(data.message || `✓ Test email notification sent to ${adminEmail || "your Google Account email"}!`);
+      } else {
+        setTestEmailStatus(`⚠️ ${data.message}`);
+      }
+    } catch (err: any) {
+      setTestEmailStatus(`⚠️ Email test failed: ${err.message}`);
+    } finally {
+      setIsSendingTestEmail(false);
     }
   };
 
@@ -368,13 +399,13 @@ export default function AdminDashboard() {
       </div>
 
       {/* Google Sheets Sync Integration Box */}
-      <div className="mt-8 rounded-xl border border-line bg-white/80 p-5 sm:p-6 shadow-xs">
+      <div className="mt-8 rounded-xl border border-line bg-white/90 p-5 sm:p-6 shadow-xs">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2">
               <span
                 className={`h-2.5 w-2.5 rounded-full ${
-                  isConfigured ? "bg-emerald-500" : "bg-amber-400"
+                  isConfigured ? "bg-emerald-500 animate-pulse" : "bg-amber-400"
                 }`}
               />
               <h2 className="font-display text-lg italic text-ink font-bold">
@@ -387,36 +418,76 @@ export default function AdminDashboard() {
                     : "bg-amber-100 text-amber-900 border border-amber-300"
                 }`}
               >
-                {isConfigured ? "Live Webhook Active" : "Local Database Mode"}
+                {isConfigured ? "Webhook Connected" : "Local Mode"}
               </span>
             </div>
             <p className="text-xs text-ink/70 mt-1">
-              Every website order and customer contact can sync straight into your Google Sheet automatically.
+              Active Spreadsheet:{" "}
+              <a
+                href="https://docs.google.com/spreadsheets/d/1OUYFgJCfn4NnVveZARto1bBOTY29af2Nw62hhrqBJ6c/edit"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-rose-dark font-semibold underline hover:text-ink transition"
+              >
+                Untitled spreadsheet (1OUYFgJCfn4NnVveZARto1bBOTY29af2Nw62hhrqBJ6c) ↗
+              </a>
             </p>
           </div>
 
-          <button
-            onClick={() => setShowScriptModal(true)}
-            className="text-xs text-rose-dark font-bold hover:underline shrink-0"
-          >
-            How to set up Google Sheet (1 Min Guide) →
-          </button>
+          <div className="flex items-center gap-2">
+            <a
+              href="/api/export-csv"
+              download
+              className="rounded-md border border-line bg-cream hover:bg-sand px-3 py-1.5 text-xs font-semibold text-ink flex items-center gap-1.5 shadow-2xs transition"
+              title="Download all orders as CSV to import directly into Google Sheet"
+            >
+              <span>📥 Export CSV</span>
+            </a>
+            <button
+              onClick={() => setShowScriptModal(true)}
+              className="rounded-md bg-rose-dark hover:bg-ink text-white px-3.5 py-1.5 text-xs font-bold transition shadow-xs flex items-center gap-1.5"
+            >
+              <span>⚙️ Apps Script Setup (1-Min)</span>
+            </button>
+          </div>
         </div>
 
         <div className="mt-4 flex flex-col sm:flex-row items-center gap-2.5">
           <input
             type="url"
-            placeholder="Paste your Google Apps Script Web App URL here (e.g. https://script.google.com/macros/s/.../exec)"
+            placeholder="Paste your deployed Google Apps Script Web App URL here (ends with /exec)"
             value={webhookUrl}
             onChange={(e) => setWebhookUrl(e.target.value)}
-            className="flex-1 w-full rounded-md border border-line bg-white px-3.5 py-2 text-xs text-ink placeholder:text-ink/40 focus:outline-none focus:border-rose-dark"
+            className="flex-1 w-full rounded-md border border-line bg-white px-3.5 py-2 text-xs text-ink placeholder:text-ink/40 focus:outline-none focus:border-rose-dark font-mono"
           />
           <button
             onClick={handleSaveAndSyncSheet}
             disabled={isSyncing}
             className="w-full sm:w-auto btn-primary py-2 px-5 text-xs font-bold shrink-0 disabled:opacity-50"
           >
-            {isSyncing ? "Syncing..." : "Sync All to Google Sheet 🚀"}
+            {isSyncing ? "Syncing..." : "Sync All Orders to Sheet 🚀"}
+          </button>
+        </div>
+
+        {/* Instant Email Alert Configuration */}
+        <div className="mt-3 pt-3 border-t border-line/60 flex flex-col sm:flex-row items-center gap-2.5">
+          <div className="flex items-center gap-1.5 shrink-0 text-xs font-semibold text-ink">
+            <span>✉️ Order Alert Email:</span>
+          </div>
+          <input
+            type="email"
+            placeholder="Enter your email to receive instant order notifications (e.g. yourname@gmail.com)"
+            value={adminEmail}
+            onChange={(e) => setAdminEmail(e.target.value)}
+            className="flex-1 w-full rounded-md border border-line bg-white px-3.5 py-2 text-xs text-ink placeholder:text-ink/40 focus:outline-none focus:border-rose-dark"
+          />
+          <button
+            onClick={handleSendTestEmail}
+            disabled={isSendingTestEmail}
+            className="w-full sm:w-auto rounded-md border border-line bg-cream hover:bg-sand text-ink px-4 py-2 text-xs font-bold shrink-0 shadow-2xs transition disabled:opacity-50"
+            title="Send a sample order notification to verify your email inbox"
+          >
+            {isSendingTestEmail ? "Sending..." : "Send Test Email Alert ✉️"}
           </button>
         </div>
 
@@ -427,6 +498,16 @@ export default function AdminDashboard() {
             }`}
           >
             {syncStatus}
+          </p>
+        )}
+
+        {testEmailStatus && (
+          <p
+            className={`mt-1.5 text-xs ${
+              testEmailStatus.startsWith("✓") ? "text-emerald-700 font-semibold" : "text-amber-800"
+            }`}
+          >
+            {testEmailStatus}
           </p>
         )}
       </div>
@@ -498,7 +579,7 @@ export default function AdminDashboard() {
                 <th className="py-3 px-4">Customer Details</th>
                 <th className="py-3 px-4">Purchased Items</th>
                 <th className="py-3 px-4">Total &amp; Payment</th>
-                <th className="py-3 px-4">Transaction ID (TID)</th>
+                <th className="py-3 px-4">Payment Proof &amp; Receipt</th>
                 <th className="py-3 px-4">Order Status</th>
                 <th className="py-3 px-4 text-right">Actions</th>
               </tr>
@@ -568,33 +649,44 @@ export default function AdminDashboard() {
                         </span>
                       </td>
 
-                      {/* Transaction ID & Screenshot */}
+                      {/* Payment Proof & Screenshot */}
                       <td className="py-3.5 px-4 font-mono text-[11px]">
-                        {o.transactionId ? (
-                          <div className="flex flex-col items-start gap-1">
-                            <span className="bg-sand/70 px-1.5 py-0.5 rounded border border-line text-ink font-semibold">
-                              {o.transactionId}
+                        <div className="flex flex-col items-start gap-1.5">
+                          {o.transactionId && (
+                            <span className="bg-sand/80 px-2 py-0.5 rounded border border-line text-ink font-semibold">
+                              TID: {o.transactionId}
                             </span>
-                            {o.paymentScreenshot && (
-                              <button
-                                type="button"
-                                onClick={() =>
-                                  setViewingScreenshot({
-                                    id: o.id,
-                                    name: o.customerName,
-                                    url: o.paymentScreenshot!,
-                                    tid: o.transactionId,
-                                  })
-                                }
-                                className="inline-flex items-center gap-1 text-[10px] font-bold text-rose-dark hover:underline font-sans mt-0.5"
-                              >
-                                <span>📸 View Receipt</span>
-                              </button>
-                            )}
-                          </div>
-                        ) : (
-                          <span className="text-ink/35 italic font-sans">N/A (COD)</span>
-                        )}
+                          )}
+
+                          {o.paymentScreenshot ? (
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setViewingScreenshot({
+                                  id: o.id,
+                                  name: o.customerName,
+                                  url: o.paymentScreenshot!,
+                                  tid: o.transactionId,
+                                })
+                              }
+                              className="group inline-flex items-center gap-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-md px-2.5 py-1 text-[11px] font-bold shadow-2xs transition font-sans"
+                              title="Click to inspect customer payment receipt screenshot"
+                            >
+                              <img
+                                src={o.paymentScreenshot}
+                                alt="Receipt thumbnail"
+                                className="w-5 h-5 object-cover rounded border border-emerald-400 group-hover:scale-110 transition-transform"
+                              />
+                              <span>📸 View Screenshot</span>
+                            </button>
+                          ) : o.paymentMethod === "jazzcash" || o.paymentMethod === "bank_transfer" ? (
+                            <span className="text-[10px] text-amber-700 font-semibold font-sans">
+                              ⚠️ No screenshot
+                            </span>
+                          ) : (
+                            <span className="text-ink/40 italic font-sans text-[11px]">Cash on Delivery</span>
+                          )}
+                        </div>
                       </td>
 
                       {/* Status */}
@@ -655,10 +747,10 @@ export default function AdminDashboard() {
             <div className="flex items-center justify-between border-b border-line pb-3">
               <div>
                 <h3 className="font-display text-xl font-bold italic text-ink">
-                  Google Sheet Webhook Setup Guide
+                  Google Sheet Orders &amp; Payment Sync Setup
                 </h3>
                 <p className="text-xs text-ink/65 mt-0.5">
-                  Follow these 4 simple steps to connect your website to Google Sheets in 1 minute:
+                  Follow these 4 simple steps to connect this Google Sheet in 1 minute:
                 </p>
               </div>
               <button
@@ -671,25 +763,42 @@ export default function AdminDashboard() {
 
             <div className="mt-4 space-y-3 text-xs leading-relaxed text-ink/85">
               <div className="rounded-lg bg-sand/40 border border-line p-3">
-                <span className="font-bold text-ink">Step 1:</span> Open your Google Sheet in Google Drive.
+                <span className="font-bold text-ink">Step 1:</span> Open your Google Sheet:{" "}
+                <a
+                  href="https://docs.google.com/spreadsheets/d/1OUYFgJCfn4NnVveZARto1bBOTY29af2Nw62hhrqBJ6c/edit"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-rose-dark font-bold underline ml-1 hover:text-ink"
+                >
+                  Open Untitled Spreadsheet (Click here ↗)
+                </a>
               </div>
               <div className="rounded-lg bg-sand/40 border border-line p-3">
                 <span className="font-bold text-ink">Step 2:</span> In top menu click:{" "}
-                <span className="font-mono bg-cream px-1.5 py-0.5 rounded border border-line">
+                <span className="font-mono bg-cream px-1.5 py-0.5 rounded border border-line font-bold">
                   Extensions → Apps Script
-                </span>
-                .
+                </span>{" "}
+                <span className="text-ink/65">(توسیع → ایپس سکرپٹ)</span>.
               </div>
               <div className="rounded-lg bg-sand/40 border border-line p-3">
-                <span className="font-bold text-ink">Step 3:</span> Delete any code in the editor, and click the
-                button below to Copy &amp; Paste this complete automation script.
+                <span className="font-bold text-ink">Step 3:</span> Delete any default code in{" "}
+                <code className="bg-cream px-1 rounded">Code.gs</code>, then click the{" "}
+                <span className="font-bold text-rose-dark">&quot;📋 Copy Script&quot;</span> button below and paste it there. Click Save (💾).
               </div>
               <div className="rounded-lg bg-sand/40 border border-line p-3">
-                <span className="font-bold text-ink">Step 4:</span> Click{" "}
-                <span className="font-bold text-ink">Deploy → New deployment</span> → Choose{" "}
-                <span className="font-bold text-ink">Web app</span> → Set &apos;Who has access&apos; to{" "}
-                <span className="font-bold text-rose-dark">&apos;Anyone&apos;</span>. Deploy, copy the Web App
-                URL, and paste it into the URL field above!
+                <span className="font-bold text-ink">Step 4:</span> In Apps Script top right:
+                <ul className="list-disc pl-5 mt-1.5 space-y-1">
+                  <li>Click <span className="font-bold text-ink">Deploy → New deployment</span></li>
+                  <li>Click gear ⚙️ icon next to &apos;Select type&apos; → choose <span className="font-bold text-ink">Web app</span></li>
+                  <li>Set Description: <span className="italic font-medium">Layora Sync</span></li>
+                  <li>Set Execute as: <span className="font-bold text-ink">Me</span></li>
+                  <li>Set Who has access: <span className="font-bold text-rose-dark">&apos;Anyone&apos;</span> <span className="text-ink/60">(Crucial!)</span></li>
+                  <li>Click <span className="font-bold text-ink">Deploy</span>, authorize permissions, and copy the <span className="font-mono font-bold text-ink">Web app URL</span> (ends with /exec).</li>
+                </ul>
+              </div>
+              <div className="rounded-lg bg-emerald-50 border border-emerald-200 p-3 text-emerald-900">
+                <span className="font-bold">Step 5:</span> Paste the copied URL into the box in this dashboard and click{" "}
+                <span className="font-bold">&quot;Sync All Orders to Sheet 🚀&quot;</span>!
               </div>
 
               <div className="mt-4">
@@ -708,7 +817,14 @@ export default function AdminDashboard() {
               </div>
             </div>
 
-            <div className="mt-6 flex justify-end">
+            <div className="mt-6 flex items-center justify-between">
+              <a
+                href="/api/export-csv"
+                download
+                className="text-xs text-ink/75 hover:text-rose-dark font-medium underline"
+              >
+                Or download instant CSV backup →
+              </a>
               <button
                 onClick={() => setShowScriptModal(false)}
                 className="btn-primary py-2 px-6 text-xs font-bold"
@@ -754,7 +870,7 @@ export default function AdminDashboard() {
               />
             </div>
 
-            <div className="flex items-center justify-between pt-2">
+            <div className="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-line/70">
               <a
                 href={viewingScreenshot.url}
                 download={`LAYORA_Receipt_${viewingScreenshot.id}.jpg`}
@@ -762,12 +878,24 @@ export default function AdminDashboard() {
               >
                 <span>💾 Download Full Image</span>
               </a>
-              <button
-                onClick={() => setViewingScreenshot(null)}
-                className="btn-primary py-1.5 px-5 text-xs font-bold"
-              >
-                Close
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleUpdateStatus(viewingScreenshot.id, "paid", "verified");
+                    setViewingScreenshot(null);
+                  }}
+                  className="rounded-md bg-emerald-700 hover:bg-emerald-800 text-white px-3.5 py-1.5 text-xs font-bold shadow-2xs transition"
+                >
+                  ✓ Verify &amp; Mark as Paid
+                </button>
+                <button
+                  onClick={() => setViewingScreenshot(null)}
+                  className="btn-primary py-1.5 px-4 text-xs font-bold"
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         </div>

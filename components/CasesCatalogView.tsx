@@ -4,8 +4,14 @@ import { useState } from "react";
 import ProductGrid from "@/components/ProductGrid";
 import { Product } from "@/lib/types";
 
-export default function CasesCatalogView({ products }: { products: Product[] }) {
-  const [filter, setFilter] = useState<"persian" | "pop-art" | "bracelets">("persian");
+export default function CasesCatalogView({
+  products,
+  initialFilter = "persian",
+}: {
+  products: Product[];
+  initialFilter?: "persian" | "pop-art" | "bracelets";
+}) {
+  const [filter, setFilter] = useState<"persian" | "pop-art" | "bracelets">(initialFilter);
 
   const persianProducts = products.filter((p) => p.subcategory === "persian-heritage");
   const popArtProducts = products.filter(
@@ -62,9 +68,9 @@ export default function CasesCatalogView({ products }: { products: Product[] }) 
                 : "bg-rose-100 text-rose-900 hover:bg-rose-200"
             }`}
           >
-            <span>✨ Bracelets ({braceletProducts.length})</span>
+            <span>✨ Bracelets, Watches &amp; Hand Chains ({braceletProducts.length})</span>
             <span className="rounded-full bg-yellow-300 px-2 py-0.5 text-[9px] font-bold text-yellow-900 uppercase">
-              Sale 399
+              From 399
             </span>
           </button>
         )}
@@ -74,10 +80,8 @@ export default function CasesCatalogView({ products }: { products: Product[] }) 
       {filter === "bracelets" && (
         <div className="mb-8 rounded-2xl bg-rose-50 border border-rose-200 px-6 py-4 text-center">
           <p className="text-sm sm:text-base font-semibold text-rose-800">
-            🎉 Special Sale — All Bracelets at{" "}
+            🎉 Luxury Clover Watches, Floral Hand Chains &amp; Tulip Charm Bracelets — Special Sale Starting at{" "}
             <span className="text-rose-dark font-bold text-lg">PKR 399</span>
-            {" "}·{" "}
-            <span className="line-through text-ink/50 text-sm">PKR 500</span>
           </p>
         </div>
       )}
